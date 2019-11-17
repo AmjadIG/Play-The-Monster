@@ -10,7 +10,6 @@ public class GuiTest extends JFrame {
 
 	public GuiTest() {
 		initGui();
-		
 	}
 	
 	public void initGui() {
