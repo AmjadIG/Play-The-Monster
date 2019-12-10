@@ -1,6 +1,7 @@
 package login.PersistantLayer;
 
 import java.util.List;
+import java.util.Map;
 import DAO.DAO;
 import login.BusinessLogic.*;
 
@@ -34,6 +35,11 @@ public class UserDAO implements DAO<User> {
 	public void update(User t, String[] params) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public User getBy(Map<String, String> keyVal) {
+		return null;
 	}
 
 }

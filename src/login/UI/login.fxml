@@ -10,6 +10,6 @@
    	 	<TextField fx:id="loginTextField" />
    	 	<Label fx:id="pwdLabel" text="Password :" />
    	 	<TextField fx:id="pwdTextField" />
-   	 	<Button fx:id="loginBtn" text="Login" />
+   	 	<Button fx:id="loginBtn" text="Log in" />
 	</children>
 </VBox>
