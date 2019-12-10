@@ -12,7 +12,6 @@ import java.awt.Toolkit;
 public class Board extends JPanel implements Runnable{
 
 	private static final long serialVersionUID = 5247029752758712281L;
-
 	public static Board board = null;
 	
 	private final int B_WIDTH = 800;
