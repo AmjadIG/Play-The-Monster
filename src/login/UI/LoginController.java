@@ -9,12 +9,14 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import login.BusinessLogic.Facade;
 import login.PersistantLayer.UserDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 public class LoginController extends Application implements LoginUI  {
+	Facade facade = new Facade();
 	Scene scene = null;
 	Button submit = null;
 	TextField login = null;
@@ -62,7 +64,20 @@ public class LoginController extends Application implements LoginUI  {
 	
 	
 	public boolean login() {
-		UserDAO udao = (UserDAO) DAOFactory.getUserDAO();
+		String login = readUserLogin();
+		String pwd = readUserPassword();
+		Map<String, String> userInfo = new HashMap<String, String>();
+		userInfo.put("login", login);
+		userInfo.put("password", pwd);
+		System.out.println(login);
+		System.out.println(pwd);
+		boolean bool = facade.login(userInfo);
+		if (bool){
+			System.out.println("Client connecté");
+		}
+		return bool;
+
+		/*UserDAO udao = (UserDAO) DAOFactory.getUserDAO();
 		String login = readUserLogin();
 		String pwd = readUserPassword();
 		Map<String, String> userInfo = new HashMap<String, String>();
@@ -71,7 +86,7 @@ public class LoginController extends Application implements LoginUI  {
 		if (udao.getBy(userInfo) != null) {
 			return true;
 		}
-		return false;
+		return false;*/
 	}
 
 	public static void main(String[] args) {
