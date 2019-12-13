@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import login.BusinessLogic.Facade;
 import login.PersistantLayer.UserDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ public class LoginController extends Application implements LoginUI  {
 	Button submit = null;
 	TextField login = null;
 	TextField pwd = null;
+	Facade facade = new Facade();
 	public LoginController() {
 		Parent root = null;
 		try {
@@ -62,16 +64,7 @@ public class LoginController extends Application implements LoginUI  {
 	
 	
 	public boolean login() {
-		UserDAO udao = (UserDAO) DAOFactory.getUserDAO();
-		String login = readUserLogin();
-		String pwd = readUserPassword();
-		Map<String, String> userInfo = new HashMap<String, String>();
-		userInfo.put("login", login);
-		userInfo.put("password", pwd);
-		if (udao.getBy(userInfo) != null) {
-			return true;
-		}
-		return false;
+		return facade.login(readUserLogin(), readUserPassword());
 	}
 
 	public static void main(String[] args) {
