@@ -61,32 +61,10 @@ public class LoginController extends Application implements LoginUI  {
 	public void reactToClick() {
 		System.out.print("clic!");
 	}
-	
-	
-	public boolean login() {
-		String login = readUserLogin();
-		String pwd = readUserPassword();
-		Map<String, String> userInfo = new HashMap<String, String>();
-		userInfo.put("login", login);
-		userInfo.put("password", pwd);
-		System.out.println(login);
-		System.out.println(pwd);
-		boolean bool = facade.login(userInfo);
-		if (bool){
-			System.out.println("Client connecté");
-		}
-		return bool;
 
-		/*UserDAO udao = (UserDAO) DAOFactory.getUserDAO();
-		String login = readUserLogin();
-		String pwd = readUserPassword();
-		Map<String, String> userInfo = new HashMap<String, String>();
-		userInfo.put("login", login);
-		userInfo.put("password", pwd);
-		if (udao.getBy(userInfo) != null) {
-			return true;
-		}
-		return false;*/
+
+	public boolean login() {
+		return facade.login(readUserLogin(), readUserPassword());
 	}
 
 	public static void main(String[] args) {

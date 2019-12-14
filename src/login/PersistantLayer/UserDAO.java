@@ -37,15 +37,10 @@ public class UserDAO implements DAO<User> {
 		
 	}
 
-
 	@Override
 	public User getBy(Map<String, String> keyVal) {
-		return null;
-	}
-
-	@Override
-	public boolean existUser(Map<String, String> userInfo) {
 		MysqlUserCon userDAOCon = new MysqlUserCon();
-		return userDAOCon.userExist(userInfo);
+		User user = userDAOCon.getBy(keyVal);
+		return user;
 	}
 }

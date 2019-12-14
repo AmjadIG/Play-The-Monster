@@ -1,17 +1,23 @@
 package login.PersistantLayer;
 
+
+import login.BusinessLogic.User;
+
 import java.sql.*;
 import java.util.Map;
 
 
 class MysqlUserCon {
-    public boolean userExist(Map<String, String> userInfo) {
-        boolean uExist = false;
+
+
+    public User getBy(Map<String, String> userInfo) {
+
         String uid = userInfo.get("login");
         String pwd = userInfo.get("password");
         System.out.println(uid);
         System.out.println(pwd);
         Connection conn = null;
+        User user = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(
@@ -21,16 +27,15 @@ class MysqlUserCon {
             System.out.println(query);
             ResultSet rs = stmt.executeQuery(query);
 
+
             if (rs.next()) {
-                uExist = true;
+                user = new User(rs.getInt(1),rs.getString(2));
             }
             con.close();
-
         } catch (SQLException | ClassNotFoundException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
         }
-        System.out.println(uExist);
-        return uExist;
+        return user;
     }
 }
