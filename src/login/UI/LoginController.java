@@ -45,11 +45,11 @@ public class LoginController extends Application implements LoginUI  {
 	}
 	@Override
 	public String readUserPassword() {
-		return login.getText();
+		return pwd.getText();
 	}
 	@Override
 	public String readUserLogin() {
-		return pwd.getText();
+		return login.getText();
 	}
 	@Override
 	public void start(Stage arg0) throws Exception {
