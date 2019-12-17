@@ -21,6 +21,7 @@ public class LoginController extends Application implements LoginUI  {
 	Button submit = null;
 	TextField login = null;
 	TextField pwd = null;
+	Facade facade = new Facade();
 	public LoginController() {
 		Parent root = null;
 		try {
