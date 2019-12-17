@@ -9,6 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="JavaFX13" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" name="mysql-8" level="project" />
   </component>
 </module>

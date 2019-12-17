@@ -39,7 +39,7 @@ public class UserDAO implements DAO<User> {
 
 	@Override
 	public User getBy(Map<String, String> keyVal) {
-		return null;
+		MysqlUserCon userDAOCon = new MysqlUserCon();
+		return userDAOCon.getBy(keyVal);
 	}
-
 }
