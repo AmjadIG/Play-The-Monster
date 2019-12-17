@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 public class LoginController extends Application implements LoginUI  {
+	Facade facade = new Facade();
 	Scene scene = null;
 	Button submit = null;
 	TextField login = null;
@@ -45,11 +46,11 @@ public class LoginController extends Application implements LoginUI  {
 	}
 	@Override
 	public String readUserPassword() {
-		return login.getText();
+		return pwd.getText();
 	}
 	@Override
 	public String readUserLogin() {
-		return pwd.getText();
+		return login.getText();
 	}
 	@Override
 	public void start(Stage arg0) throws Exception {
@@ -61,8 +62,8 @@ public class LoginController extends Application implements LoginUI  {
 	public void reactToClick() {
 		System.out.print("clic!");
 	}
-	
-	
+
+
 	public boolean login() {
 		return facade.login(readUserLogin(), readUserPassword());
 	}
