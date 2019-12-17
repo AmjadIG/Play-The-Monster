@@ -24,7 +24,8 @@ public class LoginController extends Application implements LoginUI  {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		scene = new Scene(root, 400, 300);
+		scene = new Scene(root, 600, 330);
+
 		login = (TextField) scene.lookup("#loginTextField");
 		pwd = (TextField) scene.lookup("#pwdTextField");
 		submit = (Button) scene.lookup("#loginBtn");
