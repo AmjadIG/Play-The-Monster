@@ -1,27 +1,22 @@
 package login.UI;
-import java.io.IOException;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Map;
-
-import DAO.DAOFactory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import login.BusinessLogic.Facade;
-import login.PersistantLayer.UserDAO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import login.BusinessLogic.Facade;
+
+import java.io.IOException;
 public class LoginController extends Application implements LoginUI  {
 	Facade facade = new Facade();
 	Scene scene = null;
 	Button submit = null;
 	TextField login = null;
 	TextField pwd = null;
-	Facade facade = new Facade();
 	public LoginController() {
 		Parent root = null;
 		try {
