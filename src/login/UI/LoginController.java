@@ -64,6 +64,8 @@ public class LoginController extends Application implements LoginUI  {
 		return facade.login(readUserLogin(), readUserPassword());
 	}
 
+
+
 	public static void main(String[] args) {
 		LoginController lc = new LoginController();
 		lc.display();
