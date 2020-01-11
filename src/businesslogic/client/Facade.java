@@ -4,11 +4,7 @@ import comlayer.Serializer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
+import java.util.List;
 
 public class Facade {
 
@@ -17,6 +13,9 @@ public class Facade {
 
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
+
+	public static void rollBackState(List<String> rollBack) {
+	}
 
 
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
