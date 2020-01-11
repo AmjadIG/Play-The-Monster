@@ -26,6 +26,7 @@ public class ItemController {
         facade.interpreteAction("#class#craftItem/"+idItem);
     }
 
+    //TODO
     public void getItemResponse(int idCommand, boolean response){
         switch (idCommand){
             case 1 :

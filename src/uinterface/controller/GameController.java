@@ -26,4 +26,7 @@ public class GameController {
         facade.interpreteAction("#class#saveGame/");
     }
 
+    //TODO
+    public void getGameResponse(){}
+
 }
