@@ -1,20 +1,18 @@
 package businesslogic.client;
 
+import businesslogic.client.domain.User;
 import comlayer.Serializer;
+import comlayer.server.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
+import java.util.ArrayList;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
 
 public class Facade {
-
-	//tous les users connectés
-	// les gameStates
-
+	ArrayList<User> connectedUsers = new ArrayList();
+	ArrayList<StateGame> stateGames = new ArrayList();
+	private EchoServer echoServer;
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
@@ -53,11 +51,19 @@ public class Facade {
 			return null;
 		}
 	}
+
 	public String findClassName(String command) {
 		if (command.equals("deleteFirstLetter")) {
 			return "vendredi.Serializer";
 		} else {
 			return null;
 		}
+	}
+
+	public static void main(){
+		Facade f = new Facade();
+		//f.echoServer = new EchoServer();
+
+
 	}
 }

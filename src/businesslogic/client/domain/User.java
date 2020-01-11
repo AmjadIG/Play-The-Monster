@@ -1,10 +1,11 @@
 package businesslogic.client.domain;
 
 import businesslogic.client.domain.unit.Monster;
-
+import comlayer.server.*;
 public class User {
     private Monster monster;
     private int id;
+    private ConnectionToClient connectionToClient;
     private String name;
     private String password;
 
