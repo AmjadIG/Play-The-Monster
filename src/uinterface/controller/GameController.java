@@ -1,23 +1,48 @@
 package uinterface.controller;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import businesslogic.client.Facade;
 
-public class GameController extends Application {
+import javax.crypto.NoSuchPaddingException;
+import java.lang.reflect.InvocationTargetException;
+import java.security.NoSuchAlgorithmException;
+
+public class GameController {
+
+    Facade facade;
 
     public GameController(){}
 
-    @Override
-    public void start(Stage stage) throws Exception {
-
+    public void signIn(String name, String password) throws NoSuchPaddingException, NoSuchAlgorithmException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#signIn/"+name+","+hash(password));
     }
 
-    public void createGame(){}
+    public void signUp(String name, String password) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#signUp/"+name+","+hash(password));
+    }
 
-    public void joinGame(){}
+    //TODO (Should use bcrypt or whatever but don't had the time
+    public String hash(String password){
+        return "Bfrjvn4543Fdf"+password+"jvn4B656vfdER";
+    }
 
-    public void loadGame(){}
 
-    public void saveGame(){}
+    public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#createGame/");
+    }
+
+    public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#joinGame/");
+    }
+
+    public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#loadGame/");
+    }
+
+    public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#saveGame/");
+    }
+
+    //TODO
+    public void getGameResponse(){}
 
 }
