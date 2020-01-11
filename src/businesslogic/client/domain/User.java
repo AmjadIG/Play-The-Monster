@@ -1,6 +1,9 @@
 package businesslogic.client.domain;
 
+import businesslogic.client.domain.unit.Monster;
+
 public class User {
+    private Monster monster;
     private int id;
     private String name;
     private String password;
@@ -27,5 +30,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Monster getMonster() {
+        return monster;
+    }
+
+    public void setMonster(Monster monster) {
+        this.monster = monster;
     }
 }

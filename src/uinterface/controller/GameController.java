@@ -1,16 +1,12 @@
 package uinterface.controller;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+import businesslogic.client.Facade;
 
-public class GameController extends Application {
+public class GameController {
+
+    Facade facade;
 
     public GameController(){}
-
-    @Override
-    public void start(Stage stage) throws Exception {
-
-    }
 
     public void createGame(){}
 
