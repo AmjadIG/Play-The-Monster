@@ -18,6 +18,22 @@ public class ChatClient extends AbstractClient {
     public void handleMessageFromServer(Object msg){
         clientUI.display(msg.toString());
     }
-    public void handleMessageFromFacade(Object msg){}
-    public void quit(){}
+
+    public void handleMessageFromFacade(String msg) {
+        try{
+            sendToServer(msg);
+        } catch (IOException e){
+            clientUI.display("Could not send message to server. Terminating client.");
+            quit();
+        }
+    }
+
+    public void quit(){
+        try {
+            closeConnection();
+        } catch (IOException e){
+
+        }
+        System.exit(0);
+    }
 }
