@@ -1,4 +1,4 @@
-package businesslogic.domain;
+package businesslogic.domain.unit;
 
 import java.util.List;
 

@@ -1,4 +1,6 @@
-package businesslogic.domain;
+package businesslogic.domain.unit;
+
+import businesslogic.domain.AbstractUnit;
 
 public abstract class ActiveUnit extends AbstractUnit {
     private int idType;
