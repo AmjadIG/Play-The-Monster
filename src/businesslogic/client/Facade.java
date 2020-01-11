@@ -8,13 +8,13 @@ import comlayer.*;
 public class Facade {
 	public Serializer serializer = new Serializer();
 	
-	public void interpreteAction(String action) {
+	public void interpreteAction(String action) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException {
 		if(serializer.isGameStateModification(action)) {
 			serializer.formating(action);
-			//delegateTo.. avec le .invoke
+			DelegateTo(serializer.getClassName(),serializer.getCommand(),serializer.getParams());
 		}else if(serializer.isDatabaseModification(action)) {
 			serializer.formating(action);
-			//delegateTo.. avec le .invoke
+			DelegateTo(serializer.getClassName(),serializer.getCommand(),serializer.getParams());
 		}else {
 			System.out.println("commande incorrecte");
 		}

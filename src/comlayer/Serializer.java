@@ -36,27 +36,23 @@ public class Serializer {
 	}
 
 	public String deleteFirstLetter(String str) {
-		System.out.println("YAY");
 		return str.substring(1);
 		
 	}
 	
 	public String extractCommand(String str) {
 		String[] parts = str.split("/");
-		String command = parts[0];
-		return command; 
+		return parts[0];
 	}
 	
 	public String[] extractParams(String str) {
 		String[] parts = str.split("/");
 		if (parts.length > 1) { 
 			if(parts[1].contains(",")) {
-				String[] params = parts[1].split(",");
-				return params; 
+				return parts[1].split(",");
 			}
 			else {
-				String[] res = {parts[1]};
-				return res;
+				return new String[]{parts[1]};
 			}
 			
 		}else {
