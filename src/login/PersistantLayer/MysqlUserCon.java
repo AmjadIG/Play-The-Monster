@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.Map;
 
 
-class MysqlUserCon {
+public class MysqlUserCon {
 
 
     public User getBy(Map<String, String> userInfo) {
