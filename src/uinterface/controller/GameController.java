@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.security.NoSuchAlgorithmException;
 
 public class GameController {
-
     Facade facade;
 
     public GameController(){}
