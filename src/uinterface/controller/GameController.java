@@ -7,7 +7,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.security.NoSuchAlgorithmException;
 
 public class GameController {
-
     Facade facade;
 
     public GameController(){}
@@ -27,15 +26,15 @@ public class GameController {
 
 
     public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#createGame/");
+        facade.interpreteAction("#@createGame/");
     }
 
     public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#joinGame/");
+        facade.interpreteAction("#@joinGame/");
     }
 
     public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#loadGame/");
+        facade.interpreteAction("#@loadGame/");
     }
 
     public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {

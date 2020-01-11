@@ -7,7 +7,7 @@ import comlayer.server.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Facade {
 	ArrayList<User> connectedUsers = new ArrayList();
@@ -15,6 +15,9 @@ public class Facade {
 	private EchoServer echoServer;
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
+
+	public static void rollBackState(List<String> rollBack) {
+	}
 
 
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
