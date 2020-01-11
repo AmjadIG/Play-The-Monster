@@ -13,6 +13,6 @@ public class SkillController {
     }
 
     public void castAbility(String spell) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#castAbility/"+spell);
+        facade.interpreteAction("#@castAbility/"+spell);
     }
 }
