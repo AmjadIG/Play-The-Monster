@@ -1,17 +1,23 @@
 package uinterface.controller;
 
-public class GameController {
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class GameController extends Application {
 
     public GameController(){}
 
-    public createGame(){}
-
-    public joinGame(){
-
+    @Override
+    public void start(Stage stage) throws Exception {
 
     }
 
-    public loadGame(){}
+    public void createGame(){}
 
-    public saveGame(){}
+    public void joinGame(){}
+
+    public void loadGame(){}
+
+    public void saveGame(){}
+
 }
