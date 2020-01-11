@@ -56,7 +56,8 @@ public class Facade {
 	public String findClassName(String command) {
 		if (command.equals("deleteFirstLetter")) {
 			return "vendredi.Serializer";
-		}else {
+		} else {
 			return null;
 		}
+	}
 }
