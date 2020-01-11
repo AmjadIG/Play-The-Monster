@@ -14,14 +14,10 @@ public abstract class AbstractClient {
     Thread clientReader;
     boolean readyToStop = false;
 
-    //property host string
-    //property port int
+    private String host;
+    private int port;
 
     public AbstractClient(String host, int port){}
-
-    public AbstractClient() { //for the moment
-
-    }
 
     public void openConnection(){}
     public void sendToServer(Object msg){}
@@ -39,4 +35,11 @@ public abstract class AbstractClient {
 
     private void closeAll(){}
 
+    protected String getHost(){
+        return this.host;
+    }
+
+    protected int getPort() {
+        return this.port;
+    }
 }

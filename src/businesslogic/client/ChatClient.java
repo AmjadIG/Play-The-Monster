@@ -7,7 +7,7 @@ public class ChatClient extends AbstractClient {
     private ChatIF clientUI;
 
     public ChatClient(ChatIF clientUI) {
-        super();
+        super(super.host,super.getPort());
         this.clientUI = clientUI;
     }
 
