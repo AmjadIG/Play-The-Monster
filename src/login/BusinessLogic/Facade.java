@@ -1,7 +1,6 @@
 package login.BusinessLogic;
 
 
-import DAO.DAO;
 import DAO.DAOFactory;
 import login.PersistantLayer.UserDAO;
 
@@ -22,7 +21,6 @@ public class Facade {
 		userConnecte = udao.getBy(userInfo);
 		System.out.println(userConnecte);
 		return userConnecte != null;
-
 	}
 
 	private void askCreation(String uid, String pwd) {
