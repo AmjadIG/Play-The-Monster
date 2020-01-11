@@ -1,85 +1,59 @@
 package comlayer;
 
 public class Serializer {
-	private String className;
 	private String command;
 	private String[] params;
-	
-	// #className#command/param1,param2
+
+	// #command/param1,param2
 	public void formating(String str) {
-		this.setClassName(extractClassName(str));
-		str = epureStringWithoutClassName(str);
 		str = deleteFirstLetter(str);
-		if (str.startsWith("@")) {
-			// modif game state
+		if (str.startsWith("@")) {// modif game state
 			str = deleteFirstLetter(str);
 			this.command = extractCommand(str);
 			this.params = extractParams(str);
 		}
-		else {
-			// modif bd
+		else {// modif bd
 			this.command = extractCommand(str);
 			this.params = extractParams(str);
 		}
 	}
-	
-	private String extractClassName(String str) {
-		str = deleteFirstLetter(str);
-		String[] parts = str.split("#");
-		return parts[0];
-	}
-	
-	private String epureStringWithoutClassName(String str) {
-		str = deleteFirstLetter(str);
-		String[] parts = str.split("#");
-		return parts[1];
-	}
 
 	public String deleteFirstLetter(String str) {
 		return str.substring(1);
-		
 	}
-	
+
 	public String extractCommand(String str) {
 		String[] parts = str.split("/");
 		return parts[0];
 	}
-	
+
 	public String[] extractParams(String str) {
 		String[] parts = str.split("/");
-		if (parts.length > 1) { 
+		if (parts.length > 1) {
 			if(parts[1].contains(",")) {
 				return parts[1].split(",");
 			}
 			else {
 				return new String[]{parts[1]};
 			}
-			
-		}else {
+		}
+		else {
 			return null;
 		}
-		
 	}
-	
-	public boolean containsParams(String str) {
-		String[] parts = str.split("/");
-		return parts[1].length() > 1;
-	}
-	
-	// verify if string looks like #a#b
+
+	// verify if string looks like #b/
 	public boolean isDatabaseModification(String str) {
 		String[] parts = str.split("#");
-		return (str.startsWith("#") && parts.length == 3);
+		return (str.startsWith("#") && parts.length == 2 && str.contains("/"));
 	}
-	
+
 	public boolean isGameStateModification(String str) {
 		if (isDatabaseModification(str)) {
-			String[] parts = str.split("#");
-			return (str.startsWith("#") && parts[2].startsWith("@"));
+			return str.startsWith("#@") && str.contains("/");
 		}else {
 			return false;
 		}
-		
 	}
 
 	public String getCommand() {
@@ -96,13 +70,5 @@ public class Serializer {
 
 	public void setParams(String[] params) {
 		this.params = params;
-	}
-
-	public String getClassName() {
-		return className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
 	}
 }
