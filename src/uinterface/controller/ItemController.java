@@ -11,19 +11,19 @@ public class ItemController {
     public ItemController(){}
 
     public void buyItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#class#buyItem/"+idItem);
+        facade.interpreteAction("#buyItem/"+idItem);
     }
 
     public void sellItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#class#sellItem/"+idItem);
+        facade.interpreteAction("#sellItem/"+idItem);
     }
 
     public void craftItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#class#craftItem/"+idItem);
+        facade.interpreteAction("#craftItem/"+idItem);
     }
 
     public void upgradeItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#class#craftItem/"+idItem);
+        facade.interpreteAction("#craftItem/"+idItem);
     }
 
     //TODO
