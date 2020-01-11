@@ -2,30 +2,28 @@ package uinterface.controller;
 
 import businesslogic.client.Facade;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class ItemController {
 
     Facade facade;
 
     public ItemController(){}
 
-    public void buyItem(int idItem){
-        String command = "#class#buyItem/"+idItem; //TODO (Classname ?) Same for the other methods
-        facade.serializer.formating(command);
+    public void buyItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#class#buyItem/"+idItem);
     }
 
-    public void sellItem(int idItem){
-        String command = "#class#sellItem/"+idItem;
-        facade.serializer.formating(command);
+    public void sellItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#class#sellItem/"+idItem);
     }
 
-    public void craftItem(int idItem){
-        String command = "#class#craftItem/"+idItem;
-        facade.serializer.formating(command);
+    public void craftItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#class#craftItem/"+idItem);
     }
 
-    public void upgradeItem(int idItem){
-        String command = "#class#craftItem/"+idItem;
-        facade.serializer.formating(command);
+    public void upgradeItem(int idItem) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        facade.interpreteAction("#class#craftItem/"+idItem);
     }
 
     public void getItemResponse(int idCommand, boolean response){
