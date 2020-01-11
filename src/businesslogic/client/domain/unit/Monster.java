@@ -5,7 +5,7 @@ import java.util.List;
 public class Monster extends ActiveUnit {
     private Monster player = null;
     private List<Integer> stats; //3 stats attack, defense, speed
-    private List<String> spell;
+    private List<String> spell = null;
 
 
 
