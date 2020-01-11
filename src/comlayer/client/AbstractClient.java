@@ -17,7 +17,10 @@ public abstract class AbstractClient {
     private String host;
     private int port;
 
-    public AbstractClient(String host, int port){}
+    public AbstractClient(String host, int port){
+        this.host = host;
+        this.port = port;
+    }
 
     public void openConnection(){}
     public void sendToServer(Object msg){}
