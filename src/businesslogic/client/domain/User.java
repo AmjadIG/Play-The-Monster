@@ -4,10 +4,10 @@ import businesslogic.client.domain.unit.Monster;
 import comlayer.server.*;
 public class User {
     private Monster monster;
-    private int id;
+    public int id;
     private ConnectionToClient connectionToClient;
-    private String name;
-    private String password;
+    public String name;
+    public String password;
 
     public User(Monster monster, int id, ConnectionToClient connectionToClient, String name, String password) {
         this.monster = monster;
@@ -15,6 +15,11 @@ public class User {
         this.connectionToClient = connectionToClient;
         this.name = name;
         this.password = password;
+    }
+    public User(int id, String name, String password) {
+    	this.id = id;
+    	this.name = name;
+    	this.password = password;
     }
 
     public ConnectionToClient getConnectionToClient() {
