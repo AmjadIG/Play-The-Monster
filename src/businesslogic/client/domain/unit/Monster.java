@@ -7,8 +7,6 @@ public class Monster extends ActiveUnit {
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
 
-
-
     public List<Integer> getStats() {
         return stats;
     }

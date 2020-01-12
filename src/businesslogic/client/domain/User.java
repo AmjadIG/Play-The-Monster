@@ -9,6 +9,22 @@ public class User {
     private String name;
     private String password;
 
+    public User(Monster monster, int id, ConnectionToClient connectionToClient, String name, String password) {
+        this.monster = monster;
+        this.id = id;
+        this.connectionToClient = connectionToClient;
+        this.name = name;
+        this.password = password;
+    }
+
+    public ConnectionToClient getConnectionToClient() {
+        return connectionToClient;
+    }
+
+    public void setConnectionToClient(ConnectionToClient connectionToClient) {
+        this.connectionToClient = connectionToClient;
+    }
+
     public int getId() {
         return id;
     }

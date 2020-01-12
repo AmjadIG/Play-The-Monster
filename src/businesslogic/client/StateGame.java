@@ -6,7 +6,7 @@ import java.util.List;
 
 public class StateGame {
     private List<String> rollBack;
-    private List<User> connectedUser;
+    private List<User> connectedUsers;
 
     public void update(String command){
         rollBack.add(command);
@@ -19,11 +19,11 @@ public class StateGame {
         this.rollBack = rollBack;
     }
 
-    public List<User> getConnectedUser() {
-        return connectedUser;
+    public List<User> getConnectedUsers() {
+        return connectedUsers;
     }
-    public void setConnectedUser(List<User> connectedUser) {
-        this.connectedUser = connectedUser;
+    public void setConnectedUsers(List<User> connectedUsers) {
+        this.connectedUsers = connectedUsers;
     }
 
     //TODO

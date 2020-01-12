@@ -4,7 +4,10 @@ package comlayer.server;// This file contains material supporting section 3.7 of
 
 import businesslogic.*;
 import businesslogic.client.*;
+import businesslogic.client.domain.User;
+import businesslogic.client.StateGame;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -39,6 +42,17 @@ public class EchoServer extends AbstractServer
         super(port, facade);
     }
 
+    public StateGame gameUser(String username){
+        for (StateGame game : facade.stateGames){
+            for (User user : game.getConnectedUsers()){
+                if (username.equals(user.getName())){
+                    return game;
+                }
+            }
+        }
+        return null;
+    }
+
 
     //Instance methods ************************************************
 
@@ -49,21 +63,27 @@ public class EchoServer extends AbstractServer
      * @param client The connection from which the message originated.
      */
     public void handleMessageFromClient
-    (Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException {
-        facade.interpreteAction((String) msg);
-
-        this.sendToAllClients(msg);
+    (Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
+        Object o = facade.interpreteAction((String) msg);
+        String command = facade.serializer.extractCommand((String)msg);
+        String username = facade.serializer.extractParams((String) msg)[0];
+        if (command.equals("login") ||command.equals("register")){
+            for (User u : facade.connectedUsers){
+                if (u.getName().equals(username)){
+                    u.setConnectionToClient(client);
+                }
+            }
+            client.sendToClient(msg);
+        }
+        else {
+            StateGame game = gameUser(username);
+            for (User u : game.getConnectedUsers()){
+                u.getConnectionToClient().sendToClient(msg);
+            }
+        }
     }
 
     //Class methods ***************************************************
-
-    /**
-     * This method is responsible for the creation of
-     * the server instance (there is no UI in this phase).
-     *
-     * @param args The port number to listen on.  Defaults to 5555
-     *          if no argument is entered.
-     */
 
   /*
   public static void main(String[] args)

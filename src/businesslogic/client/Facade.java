@@ -10,11 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Facade {
-	ArrayList<User> connectedUsers = new ArrayList();
-	ArrayList<StateGame> stateGames = new ArrayList();
+	public ArrayList<User> connectedUsers = new ArrayList();
+	public ArrayList<StateGame> stateGames = new ArrayList();
+
+
+
 	private EchoServer echoServer;
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
+
+	public Facade() {
+	}
 
 	public static void rollBackState(List<String> rollBack) {
 	}
@@ -62,11 +68,20 @@ public class Facade {
 			return null;
 		}
 	}
-
-	public static void main(){
-		Facade f = new Facade();
-		//f.echoServer = new EchoServer();
-
-
+	public EchoServer getEchoServer() {
+		return echoServer;
 	}
+
+	public void setEchoServer(EchoServer echoServer) {
+		this.echoServer = echoServer;
+	}
+
+	public ConnectionToClient getClientTemp() {
+		return clientTemp;
+	}
+
+	public void setClientTemp(ConnectionToClient clientTemp) {
+		this.clientTemp = clientTemp;
+	}
+
 }
