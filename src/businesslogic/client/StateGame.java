@@ -1,15 +1,19 @@
 package businesslogic.client;
 
-import businesslogic.client.domain.User;
+import businesslogic.client.domain.*;
+import businesslogic.client.domain.map.Map;
 
 import java.util.List;
+
 
 public class StateGame {
     private List<String> rollBack;
     private List<User> connectedUsers;
+    private Map map;
 
     public void update(String command){
         rollBack.add(command);
+
     }
 
     public List<String> getRollBack() {

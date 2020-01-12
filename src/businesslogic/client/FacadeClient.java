@@ -5,22 +5,32 @@ import comlayer.Serializer;
 import comlayer.server.*;
 import persistlayer.DAO.DAOFactory;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Facade {
-	public ArrayList<User> connectedUsers = new ArrayList();
-	public ArrayList<StateGame> stateGames = new ArrayList();
+public class FacadeClient {
+
+
+	public ChatClient chatClient;
+
+	public ChatClient getChatClient() {
+		return chatClient;
+	}
 
 
 
-	private EchoServer echoServer;
+	public void setChatClient(ChatClient chatClient) {
+		this.chatClient = chatClient;
+	}
+
+
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
-	public Facade() {}
+	public FacadeClient() {}
 
 
 
@@ -76,14 +86,11 @@ public class Facade {
 			return null;
 		}
 	}
-	public EchoServer getEchoServer() {
-		return echoServer;
-	}
 
-	public void setEchoServer(EchoServer echoServer) {
-		this.echoServer = echoServer;
-	}
 	
+	public void sendToServer(String action) throws IOException {
+		chatClient.handleMessageFromFacade(action);
+	}
 
 	/*
 	public ConnectionToClient getClientTemp() {
