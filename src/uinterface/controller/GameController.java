@@ -97,7 +97,7 @@ public class GameController extends Application {
         if(nameS.isEmpty() || passwordS.isEmpty()){
             System.out.println("Please fill all the entries.");
         } else {
-            facade.sendToServer("#signIn/"+name+","+hash(password.getText()));
+            facade.sendToServer("#signIn/"+nameS+","+hash(passwordS));
         }
     }
     public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
