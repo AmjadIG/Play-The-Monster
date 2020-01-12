@@ -70,12 +70,10 @@ public class EchoServer extends AbstractServer
         String command = facade.serializer.extractCommand((String)msg);
         String username = facade.serializer.extractParams((String) msg)[0];
         if (command.equals("login") ||command.equals("register")){
-            for (User u : facade.connectedUsers){
-                if (u.getName().equals(username)){
-                    u.setConnectionToClient(client);
-                }
-            }
             client.sendToClient(msg+"="+o);
+            if(o.equals(true)) {
+            	client.setInfo("monster",facade.connectedUsers.get(facade.connectedUsers.size()-1).getMonster());
+            }
         }
         else {
             StateGame game = gameUser(username);

@@ -1,8 +1,11 @@
 package businesslogic.client.domain;
 
+import businesslogic.client.domain.map.Case;
+
 public abstract class AbstractUnit {
     private int idUnit;
     private String name;
+    private Case position;
 
     public int getIdUnit() {
         return idUnit;
@@ -16,6 +19,9 @@ public abstract class AbstractUnit {
 		return name;
 	}
 
+	public void setPosition(Case position) {
+		this.position = position;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -17,6 +17,7 @@ public class GameController extends Application {
     FacadeClient facade;
     Parent parent = null;
     Scene scene = null;
+    Stage stage = null;
 
     //Sign In Attributes
     @FXML
@@ -34,9 +35,13 @@ public class GameController extends Application {
     @FXML
     TextField email = null;
 
+    public GameController() throws IOException {
+    	this.facade = new FacadeClient();
+    }
     //Start called by main
     @Override
     public void start(Stage arg0) throws Exception {
+    	
         try {
             parent = FXMLLoader.load(GameController.class.getResource("../views/game/login.fxml"));
         } catch (IOException e) {
@@ -45,7 +50,7 @@ public class GameController extends Application {
         scene = new Scene(parent, 600, 330);
         name = (TextField) scene.lookup("#loginTextField");
         password = (TextField) scene.lookup("#pwdTextField");
-        arg0.setTitle("Login");
+        arg0.setTitle("Play");
         arg0.setScene(this.scene);
         arg0.show();
     }
@@ -66,15 +71,15 @@ public class GameController extends Application {
         String pn = playerName.getText();
         String p1 = hash(password1.getText());
         String p2 = hash(password2.getText());
-        String mail = email.getText();
-
-        if(!pn.isEmpty() && !p1.isEmpty() && !p2.isEmpty() && !mail.isEmpty()){
+        //String mail = email.getText();
+        if(!pn.isEmpty() && !p1.isEmpty() && !p2.isEmpty()){
             if(p1.equals(p2)){
-                if(mail.contains(mailFormat)){
-                    facade.sendToServer("#signup/"+pn+","+p1+","+p2+","+mail);
-                } else {
-                    System.out.println("Please enter an available gmail address.");
-                }
+            	facade.sendToServer("#signup/"+pn+","+p1);
+//                if(mail.contains(mailFormat)){
+//                    facade.sendToServer("#signup/"+pn+","+p1);
+//                } else {
+//                    System.out.println("Please enter an available gmail address.");
+//                }
             } else {
                 System.out.println("The two passwords should correspond one with another.");
             }
@@ -86,18 +91,18 @@ public class GameController extends Application {
     //Hash the user password
     //Note : We Should use BCrypt or any encryption script to encrypt our password (but lack of time)
     public String hash(String password){
-        return "Bfrjvn4543Fdf"+password+"jvn4B656vfdER"; //So we added salt (at the end and at the beginning)
+        return "Bfr"+password+"jvER"; //So we added salt (at the end and at the beginning)
     }
 
     //Invoke Facade methods
     public void signIn(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
-        String nameS = name.getText();
+    	
+    	String nameS = name.getText();
         String passwordS = password.getText();
-
         if(nameS.isEmpty() || passwordS.isEmpty()){
             System.out.println("Please fill all the entries.");
         } else {
-            facade.sendToServer("#signIn/"+nameS+","+hash(passwordS));
+            facade.sendToServer("#login/"+nameS+","+hash(passwordS));
         }
     }
     public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
@@ -125,10 +130,12 @@ public class GameController extends Application {
         scene = new Scene(parent, 600, 330);
         newStage.setScene(scene);
 
-        playerName = (TextField) scene.lookup("#playerName");
-        password1 = (TextField) scene.lookup("#password1");
-        password2 = (TextField) scene.lookup("#password2");
-        email = (TextField) scene.lookup("#email");
+        if(fxml.equals("../views/game/loginRegister.fxml")) {
+        	playerName = (TextField) scene.lookup("#playerName");
+            password1 = (TextField) scene.lookup("#password1");
+            password2 = (TextField) scene.lookup("#password2");
+            email = (TextField) scene.lookup("#email");
+        }
 
         newStage.show();
     }

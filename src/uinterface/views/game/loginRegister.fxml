@@ -46,8 +46,7 @@
                </GridPane.margin>
             </Pane>
             <TextField fx:id="playerName" GridPane.rowIndex="3" />
-            <TextField fx:id="email" GridPane.rowIndex="9" />
-            <Label text="Enter your mail address :" GridPane.rowIndex="8" />
+            
             <Label text="Enter your password again :" GridPane.rowIndex="6" />
             <Label text="Enter your password :" GridPane.rowIndex="4" />
             <Label text="Enter your wanted Player Name :" GridPane.rowIndex="2" />

@@ -17,16 +17,10 @@ import java.util.Map;
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
 	public ArrayList<StateGame> stateGames = new ArrayList();
-
-
-
-	private EchoServer echoServer;
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
 	public Facade() {}
-
-
 
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if(serializer.isGameStateModification(action)) {
@@ -40,16 +34,12 @@ public class Facade {
 			return null;
 		}
 	}
-
-	public void Delegate2(String action, String command, String[] params){
-
-		if(command.equals("signUp")){
-
-		}else if(command.equals("signIn")){
-
-		}
+	public boolean signup(String username, String pwd) {
+		System.out.println("test");
+		User u = new User(10, username, pwd);
+		DAO userDAO = DAOFactory.getUserDAO();
+		return userDAO.save(u);
 	}
-	
 	public boolean login(String username, String pwd) {
 		DAO userDAO = DAOFactory.getUserDAO();
 		Map<String, String> attr = new HashMap<>();
@@ -74,31 +64,4 @@ public class Facade {
 		Object res = m.invoke(this, params);
 		return action + "=" + res;
 	}
-
-	public String findClassName(String command) {
-		if (command.equals("deleteFirstLetter")) {
-			return "vendredi.Serializer";
-		} else {
-			return null;
-		}
-	}
-	
-	public EchoServer getEchoServer() {
-		return echoServer;
-	}
-
-	public void setEchoServer(EchoServer echoServer) {
-		this.echoServer = echoServer;
-	}
-	
-
-	/*
-	public ConnectionToClient getClientTemp() {
-		return clientTemp;
-	}
-
-	public void setClientTemp(ConnectionToClient clientTemp) {
-		this.clientTemp = clientTemp;
-	}*/
-
 }

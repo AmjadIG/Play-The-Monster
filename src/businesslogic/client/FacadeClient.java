@@ -13,16 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FacadeClient {
-
-
 	public ChatClient chatClient;
-
-
-
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
-	public FacadeClient() {}
+	public FacadeClient() throws IOException {
+		this.chatClient = new ChatClient("localhost", 5555);
+	}
 
 
 
