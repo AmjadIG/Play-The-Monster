@@ -4,6 +4,7 @@ import comlayer.client.AbstractClient;
 import uinterface.ChatIF;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 public class ChatClient extends AbstractClient {
 	FacadeClient facadeClient;
@@ -14,9 +15,8 @@ public class ChatClient extends AbstractClient {
     }
 
 
-    public void handleMessageFromServer(Object msg){
-
-
+    public void handleMessageFromServer(Object msg) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+    	facadeClient.interpreteAction( (String) msg);
     }
 
     public void handleMessageFromFacade(String msg) {

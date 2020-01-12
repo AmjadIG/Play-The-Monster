@@ -61,8 +61,7 @@ public class EchoServer extends AbstractServer
      * @param msg The message received from the client.
      * @param client The connection from which the message originated.
      */
-    public void handleMessageFromClient
-    (Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
+    public void handleMessageFromClient(Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
         Object o = facade.interpreteAction((String) msg);
         String command = facade.serializer.extractCommand((String)msg);
         String username = facade.serializer.extractParams((String) msg)[0];
@@ -72,7 +71,7 @@ public class EchoServer extends AbstractServer
                     u.setConnectionToClient(client);
                 }
             }
-            client.sendToClient(msg);
+            client.sendToClient(msg+"="+o);
         }
         else {
             StateGame game = gameUser(username);

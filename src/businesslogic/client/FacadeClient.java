@@ -16,15 +16,6 @@ public class FacadeClient {
 
 	public ChatClient chatClient;
 
-	public ChatClient getChatClient() {
-		return chatClient;
-	}
-
-
-
-	public void setChatClient(ChatClient chatClient) {
-		this.chatClient = chatClient;
-	}
 
 
 	public Serializer serializer = new Serializer();
