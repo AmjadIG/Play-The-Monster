@@ -1,6 +1,6 @@
 package uinterface.controller;
 
-import businesslogic.client.Facade;
+import businesslogic.client.FacadeClient;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class GameController extends Application {
-    Facade facade;
+    FacadeClient facade;
     Parent parent = null;
     Scene scene = null;
 
@@ -34,10 +34,11 @@ public class GameController extends Application {
     @FXML
     TextField email = null;
 
+    //Start called by main
     @Override
     public void start(Stage arg0) throws Exception {
         try {
-            parent = FXMLLoader.load(GameController.class.getResource("../views/login.fxml"));
+            parent = FXMLLoader.load(GameController.class.getResource("../views/game/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -49,46 +50,73 @@ public class GameController extends Application {
         arg0.show();
     }
 
+    //Application Launcher
     public static void main(String args[]){
         Application.launch(args);
     }
 
-    public void signIn(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException {
-        facade.interpreteAction("#signIn/"+name+","+hash(password.getText()));
-    }
-
+    //Changing Login View to register view
     public void signUp(MouseEvent mouseEvent) throws IOException {
-        changeScene("../views/loginRegister.fxml");
+        changeScene("../views/game/loginRegister.fxml");
     }
 
     public void register(MouseEvent mouseEvent) throws IOException, ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException {
+        CharSequence mailFormat = new StringBuffer("@gmail.com");
+
         String pn = playerName.getText();
         String p1 = hash(password1.getText());
         String p2 = hash(password2.getText());
         String mail = email.getText();
 
-        facade.interpreteAction("#signup/"+pn+","+p1+","+p2+","+mail);
+        if(!pn.isEmpty() && !p1.isEmpty() && !p2.isEmpty() && !mail.isEmpty()){
+            if(p1.equals(p2)){
+                if(mail.contains(mailFormat)){
+                    facade.sendToServer("#signup/"+pn+","+p1+","+p2+","+mail);
+                } else {
+                    System.out.println("Please enter an available gmail address.");
+                }
+            } else {
+                System.out.println("The two passwords should correspond one with another.");
+            }
+        } else {
+            System.out.println("Please fill all the entries");
+        }
     }
 
-    //(We Should use BCrypt or any encryption script to encrypt our password (but lack of time)
+    //Hash the user password
+    //Note : We Should use BCrypt or any encryption script to encrypt our password (but lack of time)
     public String hash(String password){
         return "Bfrjvn4543Fdf"+password+"jvn4B656vfdER"; //So we added salt (at the end and at the beginning)
     }
 
-    public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#createGame/");
+    //Invoke Facade methods
+    public void signIn(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
+        String nameS = name.getText();
+        String passwordS = password.getText();
+
+        if(nameS.isEmpty() || passwordS.isEmpty()){
+            System.out.println("Please fill all the entries.");
+        } else {
+            facade.sendToServer("#signIn/"+name+","+hash(password.getText()));
+        }
+    }
+    public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
+        facade.sendToServer("#@createGame/");
+    }
+    public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
+        facade.sendToServer("#@joinGame/");
+    }
+    public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
+        facade.sendToServer("#@loadGame/");
+    }
+    //Invoke Facade method when Client ask to save (From MapUI)
+    public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
+        facade.sendToServer("#saveGame/");
     }
 
-    public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#joinGame/");
-    }
-
-    public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#loadGame/");
-    }
-
-    public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        facade.interpreteAction("#saveGame/");
+    //Invoked when Facade call it
+    public void mainMenu() throws IOException{
+        changeScene("../views/game/mainMenu.fxml");
     }
 
     public void changeScene(String fxml) throws IOException {

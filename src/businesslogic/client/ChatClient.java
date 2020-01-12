@@ -1,7 +1,6 @@
 package businesslogic.client;
 
 import comlayer.client.AbstractClient;
-import uinterface.ChatIF;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
