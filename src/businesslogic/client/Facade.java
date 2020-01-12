@@ -76,12 +76,13 @@ public class Facade {
 		this.echoServer = echoServer;
 	}
 
+	/*
 	public ConnectionToClient getClientTemp() {
 		return clientTemp;
 	}
 
 	public void setClientTemp(ConnectionToClient clientTemp) {
 		this.clientTemp = clientTemp;
-	}
+	}*/
 
 }
