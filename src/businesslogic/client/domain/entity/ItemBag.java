@@ -12,4 +12,5 @@ public class ItemBag extends Item {
     public void setBag(List<Item> bag) {
         this.bag = bag;
     }
+    
 }
