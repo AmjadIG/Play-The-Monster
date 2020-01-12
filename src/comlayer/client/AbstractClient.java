@@ -3,6 +3,7 @@ package comlayer.client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
@@ -103,7 +104,7 @@ public abstract class AbstractClient implements Runnable {
     protected void connectionClosed(){}
     protected void connectionException(Exception exception){}
     protected void connectionEstablished(){}
-    protected abstract void handleMessageFromServer(Object msg);
+    protected abstract void handleMessageFromServer(Object msg) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException;
 
     private void closeAll() throws IOException {
         try {

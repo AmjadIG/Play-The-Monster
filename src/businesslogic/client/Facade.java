@@ -40,9 +40,7 @@ public class Facade {
 	public void Delegate2(String action, String command, String[] params){
 
 		if(command.equals("signUp")){
-//			DAOFactory df = getDaoFactory();
-//			UserDAO userDAO = (UserDAO) df.getUserDAO();
-//			userDAO.save();
+
 		}else if(command.equals("signIn")){
 
 		}
@@ -76,6 +74,7 @@ public class Facade {
 			return null;
 		}
 	}
+	
 	public EchoServer getEchoServer() {
 		return echoServer;
 	}
