@@ -20,7 +20,7 @@ public class LoginController extends Application implements LoginUI  {
 	public LoginController() {
 		Parent root = null;
 		try {
-			root = FXMLLoader.load(getClass().getResource("login.fxml"));
+			root = FXMLLoader.load(getClass().getResource("../../uinterface/views/login.fxml"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
