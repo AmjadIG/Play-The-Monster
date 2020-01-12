@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.UI.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uinterface.controller.GameController">
    <children>
       <GridPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="30.0">
         <columnConstraints>
@@ -35,18 +35,18 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <PasswordField GridPane.rowIndex="5" />
-            <PasswordField GridPane.rowIndex="7" />
+            <PasswordField fx:id="password1" GridPane.rowIndex="5" />
+            <PasswordField fx:id="password2" GridPane.rowIndex="7" />
             <Pane GridPane.rowIndex="11">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="120.0" text="Register" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#register" prefHeight="27.0" prefWidth="120.0" text="Register" />
                </children>
                <GridPane.margin>
                   <Insets left="120.0" right="120.0" />
                </GridPane.margin>
             </Pane>
-            <TextField GridPane.rowIndex="3" />
-            <TextField GridPane.rowIndex="9" />
+            <TextField fx:id="playerName" GridPane.rowIndex="3" />
+            <TextField fx:id="email" GridPane.rowIndex="9" />
             <Label text="Enter your mail address :" GridPane.rowIndex="8" />
             <Label text="Enter your password again :" GridPane.rowIndex="6" />
             <Label text="Enter your password :" GridPane.rowIndex="4" />

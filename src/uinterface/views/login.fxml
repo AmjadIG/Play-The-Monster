@@ -28,7 +28,7 @@
       <RowConstraints maxHeight="66.0" minHeight="0.0" prefHeight="34.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-		<Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="27.0" maxWidth="180.0" minHeight="27.0" minWidth="180.0" prefHeight="27.0" prefWidth="180.0" text="Log in" textAlignment="CENTER" GridPane.rowIndex="7">
+		<Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" maxHeight="27.0" maxWidth="180.0" minHeight="27.0" minWidth="180.0" onMouseClicked="#signIn" prefHeight="27.0" prefWidth="180.0" text="Log in" textAlignment="CENTER" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets bottom="10.0" />
          </GridPane.margin>
@@ -42,7 +42,7 @@
 		<Label fx:id="loginLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="246.0" text="Enter your ID :" GridPane.rowIndex="2" />
 		<Label fx:id="pwdLabel" alignment="CENTER" prefHeight="17.0" prefWidth="221.0" text="Password :" GridPane.rowIndex="4" />
       <PasswordField fx:id="pwdTextField" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
-      <Button fx:id="newPlayerLogin" maxHeight="27.0" maxWidth="180.0" minHeight="27.0" minWidth="180.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="180.0" text="New Player" GridPane.rowIndex="8" />
+      <Button fx:id="newPlayerLogin" maxHeight="27.0" maxWidth="180.0" minHeight="27.0" minWidth="180.0" mnemonicParsing="false" onMouseClicked="#signUp" prefHeight="27.0" prefWidth="180.0" text="New Player" GridPane.rowIndex="8" />
       <Separator prefWidth="200.0" GridPane.rowIndex="1" />
    </children>
    <padding>
