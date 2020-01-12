@@ -3,7 +3,6 @@ package businesslogic.client;
 import businesslogic.client.domain.User;
 import comlayer.Serializer;
 import comlayer.server.*;
-import login.PersistantLayer.UserDAO;
 import persistlayer.DAO.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
