@@ -3,12 +3,16 @@ package businesslogic.client;
 import businesslogic.client.domain.User;
 import comlayer.Serializer;
 import comlayer.server.*;
+import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
@@ -45,26 +49,30 @@ public class Facade {
 
 		}
 	}
-	public Object delegateTo(String action, String command, Object[] params) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		String className = findClassName(command);
-		System.out.println(className);
-		if(className != null ) {
-			Class<?> classe = Class.forName(className);
-			Object o = classe.getDeclaredConstructor().newInstance(null);
-			Class[] typeParametres = null;
-			if (params != null) {
-				typeParametres = new Class[params.length];
-				for (int i = 0; i < params.length; ++i) {
-					typeParametres[i] = params[i].getClass();
-				}
-			}
-			Method m = classe.getMethod(command, typeParametres);
-			Object res = m.invoke(o,params);
-			return action + "=" + res;
-		}else{
-			System.out.println("j'suis une façade pas Dieu ! la commande : "+command+" n'est pas dans une classe");
-			return null;
+	
+	public boolean login(String username, String pwd) {
+		DAO userDAO = DAOFactory.getUserDAO();
+		Map<String, String> attr = new HashMap<>();
+		attr.put("name", username);
+		attr.put("password", pwd);
+		List<User> res = userDAO.getBy(attr);
+		if(res.size()!=0) {
+			this.connectedUsers.add(res.get(0));
+			return true;
 		}
+		return false;
+	}
+	public Object delegateTo(String action, String command, Object[] params) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		Class<?>[] typeParametres = null;
+		if (params != null) {
+			typeParametres = new Class[params.length];
+			for (int i = 0; i < params.length; ++i) {
+				typeParametres[i] = params[i].getClass();
+			}
+		}
+		Method m = getClass().getMethod(command, typeParametres);
+		Object res = m.invoke(this, params);
+		return action + "=" + res;
 	}
 
 	public String findClassName(String command) {

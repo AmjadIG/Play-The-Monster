@@ -1,13 +1,13 @@
-package businesslogic.client;
-
-import comlayer.client.AbstractClient;
+package comlayer.client;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import businesslogic.client.FacadeClient;
+
 public class ChatClient extends AbstractClient {
 	FacadeClient facadeClient;
-
+	
     public ChatClient(String host, int port) throws IOException {
         super(host,port);
         openConnection();

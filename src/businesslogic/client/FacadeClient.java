@@ -2,6 +2,7 @@ package businesslogic.client;
 
 import businesslogic.client.domain.User;
 import comlayer.Serializer;
+import comlayer.client.ChatClient;
 import comlayer.server.*;
 import persistlayer.DAO.DAOFactory;
 
