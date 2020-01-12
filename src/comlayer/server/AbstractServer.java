@@ -4,11 +4,13 @@
 
 package comlayer.server;
 
+import businesslogic.client.Facade;
+
+import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.*;
-import java.util.*;
-import java.io.*;
-import businesslogic.client.*;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
 * The <code> AbstractServer </code> class maintains a thread that waits
@@ -455,7 +457,7 @@ public abstract class AbstractServer implements Runnable
    *  sent the message.
    */
   final synchronized void receiveMessageFromClient(
-    Object msg, ConnectionToClient client) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    Object msg, ConnectionToClient client) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
     this.handleMessageFromClient(msg, client);
   }
 }
