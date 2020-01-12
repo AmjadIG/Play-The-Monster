@@ -1,45 +1,21 @@
-package login.PersistantLayer;
+package persistlayer.DAO;
 
-import java.util.List;
-import java.util.Map;
-import persistlayer.DAO.DAO;
-import login.BusinessLogic.*;
+import businesslogic.client.domain.*;
 
-public class UserDAO implements DAO<User> {
+public class UserDAO extends AbstractDAO<User> {
 
+	public UserDAO() {
+		super();
+	}
+	
 	@Override
-	public User get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	protected Class<?>[] getConstructorParams() {
+		Class<?>[] res = {int.class, String.class, String.class};
+		return res;
 	}
 
 	@Override
-	public List<User> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void save(User t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(User t) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(User t, String[] params) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public User getBy(Map<String, String> keyVal) {
-		MysqlUserCon userDAOCon = new MysqlUserCon();
-		return userDAOCon.getBy(keyVal);
+	protected String getTableName() {
+		return "User";
 	}
 }
