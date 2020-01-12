@@ -31,10 +31,6 @@ public class StateGame {
     }
 
     //TODO
-    public void notifyState(){ //notify to the view the changes of the game
-        Facade.rollBackState(rollBack);
-    }
-    //TODO
     public void updateBuffer(){ //update the state of ObjectBuffer
 
     }

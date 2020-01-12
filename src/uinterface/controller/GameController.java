@@ -1,6 +1,6 @@
 package uinterface.controller;
 
-import businesslogic.client.Facade;
+import businesslogic.client.FacadeClient;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 public class GameController extends Application {
-    Facade facade;
+    FacadeClient facade;
     Parent parent = null;
     Scene scene = null;
 
@@ -90,7 +90,7 @@ public class GameController extends Application {
     }
 
     //Invoke Facade methods
-    public void signIn(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException {
+    public void signIn(MouseEvent mouseEvent) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
         String nameS = name.getText();
         String passwordS = password.getText();
 
@@ -100,17 +100,17 @@ public class GameController extends Application {
             facade.sendToServer("#signIn/"+name+","+hash(password.getText()));
         }
     }
-    public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
         facade.sendToServer("#@createGame/");
     }
-    public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
         facade.sendToServer("#@joinGame/");
     }
-    public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
         facade.sendToServer("#@loadGame/");
     }
     //Invoke Facade method when Client ask to save (From MapUI)
-    public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
         facade.sendToServer("#saveGame/");
     }
 
