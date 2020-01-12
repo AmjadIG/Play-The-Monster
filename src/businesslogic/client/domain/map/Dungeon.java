@@ -1,19 +1,16 @@
 package businesslogic.client.domain.map;
 
 public class Dungeon extends Zone {
-    private int level;
+	private int level;
     private String color;
-    private Dungeon dungeon = null;
 
-    public Dungeon getDungeon(){
-        if (dungeon.equals(null)){
-            dungeon = new Dungeon();
-            level = 1;
-        }
-        return dungeon;
-    }
+    public Dungeon(int x, int y, int level, String color) {
+		super(x, y);
+		this.level = level;
+		this.color = color;
+	}
 
-    public int getLevel() {
+	public int getLevel() {
         return level;
     }
 

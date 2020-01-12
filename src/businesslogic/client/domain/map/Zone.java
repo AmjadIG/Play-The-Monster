@@ -1,15 +1,59 @@
 package businesslogic.client.domain.map;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Zone {
-    private List<Case> gridCase;
+    private Case[][] gridCase;
+    private int x;
+    private int y;
 
-    public List<Case> getGridCase() {
-        return gridCase;
+    public String showGridCase() {
+		for (int i = 0; i < gridCase.length; i++) {
+			for (int j = 0; j < gridCase.length; j++) {
+				System.out.print(gridCase[i][j].toString());
+			}
+			System.out.println();
+		}
+		return null;
+	}
+
+    public Zone( int x, int y) {
+        this.setGridCase(new Case[30][30]);
+        for (int i = 0; i < gridCase.length; i++) {
+			for (int j = 0; j < gridCase.length; j++) {
+				gridCase[i][j] = new Case(i,j);
+			}
+		}
+        this.setX(x);
+        this.setY(y);
     }
 
-    public void setGridCase(List<Case> gridCase) {
-        this.gridCase = gridCase;
+    public Case getCase(int x,int y){
+        return gridCase[x][y];
     }
+
+	public Case[][] getGridCase() {
+		return gridCase;
+	}
+	public void setGridCase(Case[][] gridCase) {
+		this.gridCase = gridCase;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 }

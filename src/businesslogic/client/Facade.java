@@ -3,6 +3,8 @@ package businesslogic.client;
 import businesslogic.client.domain.User;
 import comlayer.Serializer;
 import comlayer.server.*;
+import login.PersistantLayer.UserDAO;
+import persistlayer.DAO.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,11 +21,9 @@ public class Facade {
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
-	public Facade() {
-	}
+	public Facade() {}
 
-	public static void rollBackState(List<String> rollBack) {
-	}
+	public static void rollBackState(List<String> rollBack) {}
 
 
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -39,6 +39,16 @@ public class Facade {
 		}
 	}
 
+	public void Delegate2(String action, String command, String[] params){
+
+		if(command.equals("signUp")){
+//			DAOFactory df = getDaoFactory();
+//			UserDAO userDAO = (UserDAO) df.getUserDAO();
+//			userDAO.save();
+		}else if(command.equals("signIn")){
+
+		}
+	}
 	public Object delegateTo(String action, String command, Object[] params) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		String className = findClassName(command);
 		System.out.println(className);
