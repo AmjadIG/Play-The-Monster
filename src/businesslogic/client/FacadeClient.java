@@ -76,7 +76,7 @@ public class FacadeClient {
 		}
 	}
 
-	
+
 	public void sendToServer(String action) throws IOException {
 		chatClient.handleMessageFromFacade(action);
 	}
