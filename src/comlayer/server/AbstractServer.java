@@ -92,10 +92,10 @@ public abstract class AbstractServer implements Runnable
    *
    * @param port the port number on which to listen.
    */
-  public AbstractServer(int port, Facade facade)
+  public AbstractServer(int port)
   {
     this.port = port;
-    this.facade = facade;
+    
 
     this.clientThreadGroup =
       new ThreadGroup("ConnectionToClient threads")

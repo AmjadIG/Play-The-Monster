@@ -2,6 +2,7 @@ package businesslogic.client;
 
 import businesslogic.client.domain.User;
 import comlayer.Serializer;
+import comlayer.client.ChatClient;
 import comlayer.server.*;
 import persistlayer.DAO.DAOFactory;
 
@@ -12,15 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FacadeClient {
-
-
 	public ChatClient chatClient;
-
-
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
-	public FacadeClient() {}
+	public FacadeClient() throws IOException {
+		this.chatClient = new ChatClient("localhost", 5555);
+	}
 
 
 
@@ -77,7 +76,7 @@ public class FacadeClient {
 		}
 	}
 
-	
+
 	public void sendToServer(String action) throws IOException {
 		chatClient.handleMessageFromFacade(action);
 	}

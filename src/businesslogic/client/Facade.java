@@ -3,26 +3,24 @@ package businesslogic.client;
 import businesslogic.client.domain.User;
 import comlayer.Serializer;
 import comlayer.server.*;
+import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
 	public ArrayList<StateGame> stateGames = new ArrayList();
-
-
-
-	private EchoServer echoServer;
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 
 	public Facade() {}
-
-
 
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if(serializer.isGameStateModification(action)) {
@@ -36,60 +34,34 @@ public class Facade {
 			return null;
 		}
 	}
-
-	public void Delegate2(String action, String command, String[] params){
-
-		if(command.equals("signUp")){
-
-		}else if(command.equals("signIn")){
-
+	public boolean signup(String username, String pwd) {
+		System.out.println("test");
+		User u = new User(10, username, pwd);
+		DAO userDAO = DAOFactory.getUserDAO();
+		return userDAO.save(u);
+	}
+	public boolean login(String username, String pwd) {
+		DAO userDAO = DAOFactory.getUserDAO();
+		Map<String, String> attr = new HashMap<>();
+		attr.put("name", username);
+		attr.put("password", pwd);
+		List<User> res = userDAO.getBy(attr);
+		if(res.size()!=0) {
+			this.connectedUsers.add(res.get(0));
+			return true;
 		}
+		return false;
 	}
 	public Object delegateTo(String action, String command, Object[] params) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		String className = findClassName(command);
-		System.out.println(className);
-		if(className != null ) {
-			Class<?> classe = Class.forName(className);
-			Object o = classe.getDeclaredConstructor().newInstance(null);
-			Class[] typeParametres = null;
-			if (params != null) {
-				typeParametres = new Class[params.length];
-				for (int i = 0; i < params.length; ++i) {
-					typeParametres[i] = params[i].getClass();
-				}
+		Class<?>[] typeParametres = null;
+		if (params != null) {
+			typeParametres = new Class[params.length];
+			for (int i = 0; i < params.length; ++i) {
+				typeParametres[i] = params[i].getClass();
 			}
-			Method m = classe.getMethod(command, typeParametres);
-			Object res = m.invoke(o,params);
-			return action + "=" + res;
-		}else{
-			System.out.println("j'suis une façade pas Dieu ! la commande : "+command+" n'est pas dans une classe");
-			return null;
 		}
+		Method m = getClass().getMethod(command, typeParametres);
+		Object res = m.invoke(this, params);
+		return action + "=" + res;
 	}
-
-	public String findClassName(String command) {
-		if (command.equals("deleteFirstLetter")) {
-			return "vendredi.Serializer";
-		} else {
-			return null;
-		}
-	}
-
-	public EchoServer getEchoServer() {
-		return echoServer;
-	}
-
-	public void setEchoServer(EchoServer echoServer) {
-		this.echoServer = echoServer;
-	}
-	
-	/*
-	public ConnectionToClient getClientTemp() {
-		return clientTemp;
-	}
-
-	public void setClientTemp(ConnectionToClient clientTemp) {
-		this.clientTemp = clientTemp;
-	}*/
-
 }

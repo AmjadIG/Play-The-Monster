@@ -8,7 +8,7 @@ import businesslogic.client.domain.User;
 public class Test {
 
 	public static void main(String[] args) {
-		deleteTest();
+		getAllTest();
 	}
 	public static void getTest() {
 		DAO<User> uDAO = DAOFactory.getUserDAO();

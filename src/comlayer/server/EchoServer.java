@@ -36,9 +36,11 @@ public class EchoServer extends AbstractServer
      *
      * @param port The port number to connect on.
      */
-    public EchoServer(int port, Facade facade)
+    public EchoServer(int port)
     {
-        super(port, facade);
+    	super(port);
+    	this.facade = new Facade();
+        
     }
 
     public StateGame gameUser(String username){
@@ -62,16 +64,16 @@ public class EchoServer extends AbstractServer
      * @param client The connection from which the message originated.
      */
     public void handleMessageFromClient(Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
-        Object o = facade.interpreteAction((String) msg);
+        System.out.println(msg);
+    	Object o = facade.interpreteAction((String) msg);
+        System.out.println(o.toString());
         String command = facade.serializer.extractCommand((String)msg);
         String username = facade.serializer.extractParams((String) msg)[0];
         if (command.equals("login") ||command.equals("register")){
-            for (User u : facade.connectedUsers){
-                if (u.getName().equals(username)){
-                    u.setConnectionToClient(client);
-                }
-            }
             client.sendToClient(msg+"="+o);
+            if(o.equals(true)) {
+            	client.setInfo("monster",facade.connectedUsers.get(facade.connectedUsers.size()-1).getMonster());
+            }
         }
         else {
             StateGame game = gameUser(username);
