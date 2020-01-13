@@ -66,7 +66,7 @@ public class GameController extends Application {
     }
 
     public void register(MouseEvent mouseEvent) throws IOException, ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException {
-        CharSequence mailFormat = new StringBuffer("@gmail.com");
+        //CharSequence mailFormat = new StringBuffer("@gmail.com");
 
         String pn = playerName.getText();
         String p1 = hash(password1.getText());
