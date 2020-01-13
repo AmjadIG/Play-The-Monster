@@ -17,7 +17,6 @@ public class FacadeClient {
 	public ChatClient chatClient;
 
 
-
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
 

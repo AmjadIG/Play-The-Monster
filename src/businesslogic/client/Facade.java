@@ -74,7 +74,7 @@ public class Facade {
 			return null;
 		}
 	}
-	
+
 	public EchoServer getEchoServer() {
 		return echoServer;
 	}
@@ -83,7 +83,6 @@ public class Facade {
 		this.echoServer = echoServer;
 	}
 	
-
 	/*
 	public ConnectionToClient getClientTemp() {
 		return clientTemp;
