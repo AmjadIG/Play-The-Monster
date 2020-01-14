@@ -8,6 +8,7 @@ public class Monster extends ActiveUnit {
     private Monster player = null;
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
+    private int money;
     public Monster(Case position) {
     	setPosition(position);
     	stats.add(1,10); // attack
@@ -29,4 +30,9 @@ public class Monster extends ActiveUnit {
     public void setSpell(List<String> spell) {
         this.spell = spell;
     }
+
+    public int getMoney() { return money; }
+
+    public void setMoney(int money) { this.money = money; }
+
 }
