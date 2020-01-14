@@ -28,7 +28,7 @@
             <RowConstraints maxHeight="56.0" minHeight="0.0" prefHeight="28.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="61.0" text="Return" textAlignment="CENTER" GridPane.rowIndex="4" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="27.0" prefWidth="61.0" text="Return" textAlignment="CENTER" GridPane.rowIndex="4" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="580.0" text="Blacksmith" textAlignment="CENTER" GridPane.columnIndex="2">
                <font>
                   <Font name="Eurostile T Bold" size="24.0" />

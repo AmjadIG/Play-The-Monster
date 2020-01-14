@@ -9,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ItemController {
     Parent parent = null;
@@ -123,19 +122,18 @@ public class ItemController {
         newStage.setScene(scene);
     }
 
-    public ArrayList<String> itemAvailable(){
+    public void itemAvailable() throws IOException {
         if (this.craftSection){
-            return facade.getCraftItem();
+            facade.sendToServer("#getCraftItem/");
         }
         if (this.upgradeSection){
-            return facade.getUpgradeItem();
+            facade.sendToServer("#getUpgradeItem/");
         }
         if (this.buySection){
-            return facade.getBuyItem();
+            facade.sendToServer("#getBuyItem/");
         }
         if (this.sellSection){
-            return facade.getSellItem();
+            facade.sendToServer("#getSellItem/");
         }
-        return null;
     }
 }

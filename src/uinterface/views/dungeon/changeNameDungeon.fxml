@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uinterface.controller.DungeonController">
+    <children>
+        <GridPane layoutX="92.0" layoutY="50.0" prefHeight="300.0" prefWidth="408.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="50.0">
+            <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="60.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="248.0" minWidth="10.0" prefWidth="242.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="60.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="71.0" minHeight="3.0" prefHeight="64.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="94.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <Button mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="27.0" prefWidth="97.0" text="Ok" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="430.0" text="Donjon" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
+                    <font>
+                        <Font name="Avenir Next Condensed Bold" size="37.0" />
+                    </font>
+                </Label>
+                <Separator prefHeight="0.0" prefWidth="166.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Enter the new dungeon name :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Avenir Next Condensed Bold" size="19.0" />
+               </font>
+            </Label>
+            <TextField fx:id="dungeonName" prefHeight="27.0" prefWidth="313.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            </children>
+        </GridPane>
+    </children>
+</AnchorPane>
