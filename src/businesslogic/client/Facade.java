@@ -52,7 +52,7 @@ public class Facade {
 	}
 
 	// Lucas
-	public boolean move(String monsterID, String direction){ stateGame.move(monsterID, direction); }
+	public boolean move(String monsterID, String direction){ return stateGame.move(monsterID, direction); }
 	public boolean attack(){ return false; }
 	public boolean counterAttack(){ return false; }
 	public boolean useWeapon(){ return false; }
