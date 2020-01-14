@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
-	public StateGame stateGame = new StateGame();
+	public StateGame stateGame;
 	public Serializer serializer = new Serializer();
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if(serializer.isGameStateModification(action)) {
@@ -31,10 +31,15 @@ public class Facade {
 			return null;
 		}
 	}
+	/**
+	 * Sign-up the user (account creation)
+	 * @param username 
+	 * @param pwd : password
+	 * @return true if the account has been created
+	 */
 	public boolean signup(String username, String pwd) {
-		System.out.println("test");
 		User u = new User(10, username, pwd);
-		DAO userDAO = DAOFactory.getUserDAO();
+		DAO<User> userDAO = DAOFactory.getUserDAO();
 		return userDAO.save(u);
 	}
 	public boolean login(String username, String pwd) {

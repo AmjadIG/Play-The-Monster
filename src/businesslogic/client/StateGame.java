@@ -10,7 +10,7 @@ import java.util.List;
 
 public class StateGame {
     private List<String> rollBack;
-    private List<User> connectedUsers;
+    private List<User> connectedUsers = new ArrayList<>();
     private Map map;
     private List<Monster> monsters;
 
@@ -45,7 +45,7 @@ public class StateGame {
     }
 	public boolean move(String monsterID, String direction) {
 		Monster m = getMonsterByID(monsterID);
-		return false;
+		return m.move(direction);
 	}
 	private Monster getMonsterByID(String monsterID) {
 		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
