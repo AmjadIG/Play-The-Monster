@@ -14,6 +14,7 @@ public class StateGame {
     private Map map;
     private List<Monster> monsters;
 
+
     public StateGame() {
     	this.map = new Map();
     	this.monsters = new ArrayList<Monster>();
@@ -21,20 +22,43 @@ public class StateGame {
     		monsters.add(user.getMonster());
     	}
     }
+
+    /**
+     * add String in the List<String> rollback
+     * @param command
+     */
     public void update(String command){
         rollBack.add(command);
     }
 
+    /**
+     * List<String> getter
+     * @return List<String>
+     */
     public List<String> getRollBack() {
         return rollBack;
     }
+
+    /**
+     *
+     * @param rollBack
+     */
     public void setRollBack(List<String> rollBack) {
         this.rollBack = rollBack;
     }
 
+    /**
+     * ConnectedUsers getter
+     * @return List<User>
+     */
     public List<User> getConnectedUsers() {
         return connectedUsers;
     }
+
+    /**
+     * ConnectedUsers setter
+     * @param connectedUsers
+     */
     public void setConnectedUsers(List<User> connectedUsers) {
         this.connectedUsers = connectedUsers;
     }
@@ -44,18 +68,34 @@ public class StateGame {
 
     }
 
+    /**
+     * Map getter
+     * @return Map
+     */
     public Map getMap() {
         return map;
     }
 
+    /**
+     * Map setter
+     * @param map
+     */
     public void setMap(Map map) {
         this.map = map;
     }
 
+    /**
+     * Monsters getter
+     * @return Monster
+     */
     public List<Monster> getMonsters() {
         return monsters;
     }
 
+    /**
+     * Monsters setter
+     * @param monsters
+     */
     public void setMonsters(List<Monster> monsters) {
         this.monsters = monsters;
     }
@@ -114,4 +154,25 @@ public class StateGame {
 		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
 	}
 
+    /**
+     * change the dungeon color if the color in param is good
+     * @param color
+     * @return
+     */
+    public boolean changeDungeonColor(String color) {
+	    if(isDungeonColorAvailable(color)){
+	        getMap().getDungeon().setColor(color);
+	        return true;
+        }else return false;
+
+    }
+
+    /**
+     * return true or false if this color is available
+     * @param color
+     * @return
+     */
+    private boolean isDungeonColorAvailable(String color) {
+	    return true;
+    }
 }

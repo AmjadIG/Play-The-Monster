@@ -68,7 +68,7 @@ public class Facade {
 	public boolean quitGame(){ return false; }
 
 	// Rayan
-	public boolean changeDungeonColor(String Color){ return false;}
+	public boolean changeDungeonColor(String color){ return stateGame.changeDungeonColor(color);}
 	public boolean changeDungeonName(String name){
 		return stateGame.changeDungeonName(name);
 	}
