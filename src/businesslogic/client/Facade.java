@@ -32,9 +32,9 @@ public class Facade {
 	}
 	public boolean signup(String username, String pwd) {
 		System.out.println("test");
-		User u = new User(10, username, pwd);
 		DAO userDAO = DAOFactory.getUserDAO();
-		//TODO login();
+		User u = new User(10, username, pwd);
+		login(u.getName(),u.getPassword());
 		return userDAO.save(u);
 	}
 	public boolean login(String username, String pwd) {
