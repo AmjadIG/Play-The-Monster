@@ -16,6 +16,7 @@ public class FacadeClient {
 	public ChatClient chatClient;
 	public Serializer serializer = new Serializer();
 	private String lastStringAction;
+	//TODO private String username;
 
 	public FacadeClient() throws IOException {
 		this.chatClient = new ChatClient("localhost", 5555);

@@ -11,6 +11,9 @@ import java.util.List;
 public class StateGame {
     private List<String> rollBack;
     private List<User> connectedUsers;
+
+
+
     private Map map;
     private List<Monster> monsters;
 
@@ -43,6 +46,48 @@ public class StateGame {
     public void updateBuffer(){ //update the state of ObjectBuffer
 
     }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public List<Monster> getMonsters() {
+        return monsters;
+    }
+
+    public void setMonsters(List<Monster> monsters) {
+        this.monsters = monsters;
+    }
+
+    public boolean upgradeDungeon(String monsterID) {
+        Monster monster = getMonsterByID(monsterID);
+        if(tryUpgradeDungeon(monster)){
+            monster.setMoney( monster.getMoney() - getMap().getDungeon().getPriceToUpgrade() );
+            getMap().getDungeon().applyUpgrade();
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean tryUpgradeDungeon(Monster monster){
+        return (monster.getMoney() >= getMap().getDungeon().getPriceToUpgrade());
+    }
+
+    public boolean changeDungeonName(String name){
+        if(name.length()>0){
+            getMap().getDungeon().setName(name);
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
 	public boolean move(String monsterID, String direction) {
 		Monster m = getMonsterByID(monsterID);
 		return false;
@@ -50,5 +95,5 @@ public class StateGame {
 	private Monster getMonsterByID(String monsterID) {
 		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
 	}
-	
+
 }
