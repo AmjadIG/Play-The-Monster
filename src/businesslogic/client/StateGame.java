@@ -43,4 +43,12 @@ public class StateGame {
     public void updateBuffer(){ //update the state of ObjectBuffer
 
     }
+	public boolean move(String monsterID, String direction) {
+		Monster m = getMonsterByID(monsterID);
+		return false;
+	}
+	private Monster getMonsterByID(String monsterID) {
+		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
+	}
+	
 }

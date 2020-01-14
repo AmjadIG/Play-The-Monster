@@ -72,14 +72,11 @@ public class EchoServer extends AbstractServer
         if (command.equals("login") ||command.equals("register")){
             client.sendToClient(msg+"="+o);
             if(o.equals(true)) {
-            	client.setInfo("monster",facade.connectedUsers.get(facade.connectedUsers.size()-1).getMonster());
+            	client.setInfo("user",facade.connectedUsers.get(facade.connectedUsers.size()-1));
             }
         }
         else {
-            StateGame game = gameUser(username);
-            for (User u : game.getConnectedUsers()){
-                u.getConnectionToClient().sendToClient(msg);
-            }
+        	sendToAllClients(msg);
         }
     }
 
