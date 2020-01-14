@@ -63,7 +63,8 @@ public class StateGame {
         this.monsters = monsters;
     }
 
-    public boolean upgradeDungeon(Monster monster) {
+    public boolean upgradeDungeon(String monsterID) {
+        Monster monster = getMonsterByID(monsterID);
         if(tryUpgradeDungeon(monster)){
             monster.setMoney( monster.getMoney() - getMap().getDungeon().getPriceToUpgrade() );
             getMap().getDungeon().applyUpgrade();
@@ -75,6 +76,16 @@ public class StateGame {
 
     public boolean tryUpgradeDungeon(Monster monster){
         return (monster.getMoney() >= getMap().getDungeon().getPriceToUpgrade());
+    }
+
+    public boolean changeDungeonName(String name){
+        if(name.length()>0){
+            getMap().getDungeon().setName(name);
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 	public boolean move(String monsterID, String direction) {

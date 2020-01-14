@@ -65,11 +65,13 @@ public class Facade {
 	public boolean quitGame(){ return false; }
 
 	// Rayan
-	public boolean changeDungeonColor(String Color){ return false; }
-	public boolean changeDungeonName(){return false;}
-	public boolean upgradeDungeon(){
-		return stateGame.upgradeDungeon(getMonsterById());
-		return false;}
+	public boolean changeDungeonColor(String Color){ return false;}
+	public boolean changeDungeonName(String name){
+		return stateGame.changeDungeonName(name);
+	}
+	public boolean upgradeDungeon(String monsterid){
+		return stateGame.upgradeDungeon(monsterid);
+	}
 
 	public boolean saveDungeon(){return false;} //save modification in the database ?
 	public boolean selectMinion(){return false;}

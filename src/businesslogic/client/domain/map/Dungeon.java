@@ -1,6 +1,7 @@
 package businesslogic.client.domain.map;
 
 public class Dungeon extends Zone {
+    private String name;
 	private int level;
     private String color;
     private int priceToUpgrade = 1000;
@@ -10,6 +11,9 @@ public class Dungeon extends Zone {
 		this.level = level;
 		this.color = color;
 	}
+    public void applyUpgrade(){
+        setLevel(level++);
+    }
 
 	public int getLevel() {
         return level;
@@ -31,7 +35,11 @@ public class Dungeon extends Zone {
 
     public void setPriceToUpgrade(int priceToUpgrade) { this.priceToUpgrade = priceToUpgrade; }
 
-    public void applyUpgrade(){
-        setLevel(level++);
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
