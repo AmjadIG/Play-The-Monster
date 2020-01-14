@@ -11,9 +11,6 @@ import java.util.List;
 public class StateGame {
     private List<String> rollBack;
     private List<User> connectedUsers;
-
-
-
     private Map map;
     private List<Monster> monsters;
 
@@ -63,6 +60,11 @@ public class StateGame {
         this.monsters = monsters;
     }
 
+    /**
+     * upgrade the dungeon if the monster has enough money and return if it made the upgrade
+     * @param monsterID
+     * @return
+     */
     public boolean upgradeDungeon(String monsterID) {
         Monster monster = getMonsterByID(monsterID);
         if(tryUpgradeDungeon(monster)){
@@ -74,10 +76,20 @@ public class StateGame {
         }
     }
 
+    /**
+     * verify if the monster had enough money to upgrade his dungeon
+     * @param monster
+     * @return boolean
+     */
     public boolean tryUpgradeDungeon(Monster monster){
         return (monster.getMoney() >= getMap().getDungeon().getPriceToUpgrade());
     }
 
+    /**
+     * change the name of the dungeon if the string in parameter is good
+     * @param name
+     * @return boolean
+     */
     public boolean changeDungeonName(String name){
         if(name.length()>0){
             getMap().getDungeon().setName(name);
@@ -92,6 +104,12 @@ public class StateGame {
 		Monster m = getMonsterByID(monsterID);
 		return false;
 	}
+
+    /**
+     * return the monster with this monsterID , return null if there is no Monster associate to this monsterID
+     * @param monsterID
+     * @return
+     */
 	private Monster getMonsterByID(String monsterID) {
 		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
 	}

@@ -11,7 +11,8 @@ public class Dungeon extends Zone {
 		this.level = level;
 		this.color = color;
 	}
-    public void applyUpgrade(){
+	
+	public void applyUpgrade(){
         setLevel(level++);
     }
 
