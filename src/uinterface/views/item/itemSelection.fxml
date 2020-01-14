@@ -35,7 +35,7 @@
                </font>
             </Label>
             <Separator prefHeight="0.0" prefWidth="304.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <ListView prefHeight="163.0" prefWidth="259.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ListView fx:id="listItem" prefHeight="163.0" prefWidth="259.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Select" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4" />
             <Separator prefHeight="0.0" prefWidth="304.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Separator prefHeight="0.0" prefWidth="304.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
