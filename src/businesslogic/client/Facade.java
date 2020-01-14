@@ -1,5 +1,6 @@
 package businesslogic.client;
 
+import businesslogic.client.domain.AbstractUnit;
 import businesslogic.client.domain.User;
 
 import comlayer.Serializer;
@@ -76,15 +77,17 @@ public class Facade {
 		return stateGame.upgradeDungeon(monsterid);
 	}
 
-	public boolean selectMinion(){return false;}
-	public boolean unSelectMinion(){return false;}
+	public boolean selectMinion(String monsterID, String unitID){ return stateGame.selectMinionByID(monsterID,unitID);}
+	public boolean unSelectMinion(String monsterID){return stateGame.unSelectMinion(monsterID);}
+	public boolean returnDialogue(String unitID){return stateGame.returnDialogue(unitID);}
 	public boolean openDialogue(){ return false;}
 	public boolean quitDialogue(){ return false;}
 
 	// Christophe
-	public boolean craftItem(){ return false;}
-	public boolean upgradeItem(){ return false;}
-	public boolean buyItem(){ return false;}
+
+	public boolean craftItem(String monsterID){ return stateGame.createItem(monsterID);}
+	public boolean upgradeItem(String monsterID, String itemId){ return stateGame.upgradeItem(monsterID,itemId);}
+	public boolean buyItem(String nameItem){ return false;}
 	public boolean sellItem(){ return false;}
 	public boolean storeItem(){ return false;}
 	public boolean pickUpItem(){ return false;}

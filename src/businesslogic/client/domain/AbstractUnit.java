@@ -19,10 +19,15 @@ public abstract class AbstractUnit {
 		return name;
 	}
 
-	public void setPosition(Case position) {
-		this.position = position;
-	}
 	public void setName(String name) {
 		this.name = name;
 	}
+
+    public Case getPosition() {
+        return position;
+    }
+
+    public void setPosition(Case position) {
+        this.position = position;
+    }
 }
