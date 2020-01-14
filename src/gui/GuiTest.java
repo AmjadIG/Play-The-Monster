@@ -13,7 +13,7 @@ public class GuiTest extends JFrame {
 	}
 	
 	public void initGui() {
-		Board b = Board.createBoard();
+		GameInterface b = GameInterface.createBoard();
 		add(b);
 		addKeyListener(b.getKeyListeners()[0]);
 		setResizable(false);

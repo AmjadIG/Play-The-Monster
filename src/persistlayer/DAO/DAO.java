@@ -25,7 +25,7 @@ public interface DAO<T> {
 	
 	/**
 	 * Get the next auto increment of the table
-	 * @return int representing the next auto increment of the table
+	 * @return integer representing the next auto increment of the table
 	 */
 	int getNextAutoIncrement();
 	/**

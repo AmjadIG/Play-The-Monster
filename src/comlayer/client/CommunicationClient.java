@@ -5,19 +5,18 @@ import java.lang.reflect.InvocationTargetException;
 
 import businesslogic.client.FacadeClient;
 
-public class ChatClient extends AbstractClient {
+public class CommunicationClient extends AbstractClient {
 	FacadeClient facadeClient;
 	
-    public ChatClient(String host, int port) throws IOException {
+    public CommunicationClient(String host, int port, FacadeClient facade) throws IOException {
         super(host,port);
+        this.facadeClient = facade;
         openConnection();
     }
 
-
     public void handleMessageFromServer(Object msg) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
-    	facadeClient.interpreteAction( (String) msg);
+    	facadeClient.interpreteAction((String) msg);
     }
-
     public void handleMessageFromFacade(String msg) {
         try{
             sendToServer(msg);

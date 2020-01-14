@@ -36,11 +36,11 @@ public class GameController extends Application {
 
     public GameController() throws IOException {
     	this.facade = new FacadeClient();
+    	
     }
     //Start called by main
     @Override
     public void start(Stage arg0) throws Exception {
-    	
         try {
             parent = FXMLLoader.load(GameController.class.getResource("../views/game/login.fxml"));
         } catch (IOException e) {

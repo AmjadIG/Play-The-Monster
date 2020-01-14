@@ -5,15 +5,15 @@ import java.awt.Graphics;
 
 import businesslogic.client.domain.AbstractUnit;
 import businesslogic.client.domain.map.Case;
-import gui.Board;
+import gui.GameInterface;
 
 public abstract class ActiveUnit extends AbstractUnit {
-	public ActiveUnit(Board board, Case position) {
+	public ActiveUnit(GameInterface board, Case position) {
 		super();
 		this.board = board;
 	}
 
-	private Board board;
+	private GameInterface board;
     private int idType;
     private int posX = 0;
 	private int posY = 0;

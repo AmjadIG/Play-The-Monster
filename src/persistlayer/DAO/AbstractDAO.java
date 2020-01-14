@@ -77,6 +77,7 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 		}				
 		return res;
 	}
+	@Override
 	public int getNextAutoIncrement() {
 		int res = 0;
 		query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'PTM' AND TABLE_NAME='"+tableName+"'";

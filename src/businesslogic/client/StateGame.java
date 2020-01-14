@@ -2,24 +2,30 @@ package businesslogic.client;
 
 import businesslogic.client.domain.*;
 import businesslogic.client.domain.map.Map;
+import businesslogic.client.domain.unit.ActiveUnit;
 import businesslogic.client.domain.unit.Monster;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class StateGame {
     private List<String> rollBack;
-    private List<User> connectedUsers = new ArrayList<>();
+    private List<User> connectedUsers; 
     private Map map;
     private List<Monster> monsters;
+    private List<ActiveUnit> activeUnits;
 
 
     public StateGame() {
+    	this.connectedUsers = new ArrayList<>();
     	this.map = new Map();
     	this.monsters = new ArrayList<Monster>();
     	for(User user : connectedUsers) {
-    		monsters.add(user.getMonster());
+    		Monster m = user.getMonster();
+    		monsters.add(m);
+    		activeUnits.add(m);
     	}
     }
 
@@ -175,4 +181,15 @@ public class StateGame {
     private boolean isDungeonColorAvailable(String color) {
 	    return true;
     }
+
+    /**
+     * Update the position of all the Units
+     */
+	public void updateUnitsPosition() {
+		
+	}
+
+	public void draw(Graphics g) {
+		activeUnits.stream().forEach(a->a.draw(g));
+	}
 }

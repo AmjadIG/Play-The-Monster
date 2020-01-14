@@ -1,45 +1,40 @@
 package comlayer;
 
-public class Serializer {
+public class Deserializer {
 	private String command;
 	private String[] params;
-
-	// #command/param1,param2
-	public void formating(String str) {
+	private String result;
+	// #command/param1,param2=result
+	public String formating(String str) {
 		str = deleteFirstLetter(str);
 		if (str.startsWith("@")) {// modif game state
 			str = deleteFirstLetter(str);
-			this.command = extractCommand(str);
-			this.params = extractParams(str);
 		}
-		else {// modif bd
-			this.command = extractCommand(str);
-			this.params = extractParams(str);
-		}
+		return str;
 	}
 
 	public String deleteFirstLetter(String str) {
 		return str.substring(1);
 	}
-
+	public String extractResult(String str) {
+		String[] res = str.split("=");
+		if(res.length > 1) {
+			return res[1];
+		}
+		return null;
+	}
 	public String extractCommand(String str) {
+		str = formating(str);
 		String[] parts = str.split("/");
 		return parts[0];
 	}
 
 	public String[] extractParams(String str) {
-		String[] parts = str.split("/");
-		if (parts.length > 1) {
-			if(parts[1].contains(",")) {
-				return parts[1].split(",");
-			}
-			else {
-				return new String[]{parts[1]};
-			}
+		String params = str.substring(str.indexOf("/") + 1);
+		if(params.contains("=")){
+			params = params.substring(0, params.indexOf("=") -1);
 		}
-		else {
-			return null;
-		}
+		return params.split(",");
 	}
 
 	// verify if string looks like #b/

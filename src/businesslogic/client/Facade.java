@@ -2,7 +2,7 @@ package businesslogic.client;
 
 import businesslogic.client.domain.User;
 
-import comlayer.Serializer;
+import comlayer.Deserializer;
 
 import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
@@ -17,14 +17,14 @@ import java.util.Map;
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
 	public StateGame stateGame;
-	public Serializer serializer = new Serializer();
+	public Deserializer serializer = new Deserializer();
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if(serializer.isGameStateModification(action)) {
-			serializer.formating(action);
-			return delegateTo(action, serializer.getCommand(),serializer.getParams());
+			
+			return delegateTo(action, serializer.extractCommand(action),serializer.extractParams(action));
 		}else if(serializer.isDatabaseModification(action)) {
-			serializer.formating(action);
-			return delegateTo(action, serializer.getCommand(),serializer.getParams());
+			
+			return delegateTo(action, serializer.extractCommand(action),serializer.extractParams(action));
 		}else {
 			System.out.println("commande incorrecte");
 			return null;
@@ -43,19 +43,17 @@ public class Facade {
 		return userDAO.save(u);
 	}
 	public boolean login(String username, String pwd) {
-		DAO userDAO = DAOFactory.getUserDAO();
+		DAO<User> userDAO = DAOFactory.getUserDAO();
 		Map<String, String> attr = new HashMap<>();
 		attr.put("name", username);
 		attr.put("password", pwd);
 		List<User> res = userDAO.getBy(attr);
 		if(res.size()!=0) {
 			this.connectedUsers.add(res.get(0));
-
 			return true;
 		}
 		return false;
 	}
-
 	// Lucas
 	public boolean move(String monsterID, String direction){ return stateGame.move(monsterID, direction); }
 	public boolean attack(){ return false; }

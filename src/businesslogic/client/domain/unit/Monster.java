@@ -7,14 +7,14 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 import businesslogic.client.domain.map.Case;
-import gui.Board;
+import gui.GameInterface;
 
 public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
     private int money;
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
-    public Monster(Board board, Case position) {
+    public Monster(GameInterface board, Case position) {
     	super(board, position);
     	
     	stats.add(1,10); // attack

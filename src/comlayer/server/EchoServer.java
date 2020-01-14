@@ -52,12 +52,10 @@ public class EchoServer extends AbstractServer
      * @param client The connection from which the message originated.
      */
     public void handleMessageFromClient(Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
-        System.out.println(msg);
-    	Object o = facade.interpreteAction((String) msg);
-        System.out.println(o.toString());
+    	Object o = facade.interpreteAction((String)msg);
         String command = facade.serializer.extractCommand((String)msg);
         if (command.equals("login") ||command.equals("register")){
-            client.sendToClient(msg+"="+o);
+            client.sendToClient(o);
             if(o.equals(true)) {
             	client.setInfo("user",facade.connectedUsers.get(facade.connectedUsers.size()-1));
             }
