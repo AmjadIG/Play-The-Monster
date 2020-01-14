@@ -31,14 +31,20 @@ public class Facade {
 			return null;
 		}
 	}
-	public boolean signup(String username, String pwd) {
-		System.out.println("test");
-		User u = new User(10, username, pwd);
-		DAO userDAO = DAOFactory.getUserDAO();
-		//TODO login();
-		return userDAO.save(u);
+	/**
+	 * Sign-up the user (account creation)
+	 * @param username 
+	 * @param pwd : password
+	 * @return true if the account has been created
+	 */
+	public int signup(String username, String pwd) {
+		DAO<User> userDAO = DAOFactory.getUserDAO();
+		User u = new User(userDAO.getNextAutoIncrement(), username, pwd);
+		userDAO.save(u);
+		login(u.getName(),u.getPassword());
+		return login(u.getName(),u.getPassword());
 	}
-	public boolean login(String username, String pwd) {
+	public int login(String username, String pwd) {
 		DAO userDAO = DAOFactory.getUserDAO();
 		Map<String, String> attr = new HashMap<>();
 		attr.put("name", username);
@@ -46,10 +52,9 @@ public class Facade {
 		List<User> res = userDAO.getBy(attr);
 		if(res.size()!=0) {
 			this.connectedUsers.add(res.get(0));
-
-			return true;
+			return res.get(0).getId();
 		}
-		return false;
+		return -1;
 	}
 
 	// Lucas

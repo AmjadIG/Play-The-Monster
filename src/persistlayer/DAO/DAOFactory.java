@@ -1,7 +1,12 @@
 package persistlayer.DAO;
+import businesslogic.client.domain.User;
 
 public class DAOFactory {
-	public static DAO getUserDAO() {
-		return new UserDAO(); 
+	private static DAO<User> userDAO = null;
+	public static DAO<User> getUserDAO() {
+		if (userDAO == null){
+			userDAO = new UserDAO();
+		}
+		return userDAO;
 	}
 }

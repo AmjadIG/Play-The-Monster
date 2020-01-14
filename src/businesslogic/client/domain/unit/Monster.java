@@ -153,17 +153,17 @@ public class Monster extends ActiveUnit implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		int keycode = arg0.getKeyCode();
-		if (keycode == KeyEvent.VK_Q) {
-			dx = 0;
+		if(keycode == KeyEvent.VK_Q) {
+			setStaticOnX();
 		}
-		if (keycode == KeyEvent.VK_D) {
-			dx = 0;
+		if(keycode == KeyEvent.VK_D) {
+			setStaticOnX();
 		}
-		if (keycode == KeyEvent.VK_S) {
-			dy = 0;
+		if(keycode == KeyEvent.VK_S) {
+			setStaticOnY();
 		}
-		if (keycode == KeyEvent.VK_Z) {
-			dy = 0;
+		if(keycode == KeyEvent.VK_Z ) {
+			setStaticOnY();
 		}
 	}
 
@@ -187,4 +187,3 @@ public class Monster extends ActiveUnit implements KeyListener {
 		this.items = items;
 	}
 }
-
