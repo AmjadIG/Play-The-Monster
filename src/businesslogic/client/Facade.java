@@ -34,6 +34,7 @@ public class Facade {
 		System.out.println("test");
 		User u = new User(10, username, pwd);
 		DAO userDAO = DAOFactory.getUserDAO();
+		//TODO login();
 		return userDAO.save(u);
 	}
 	public boolean login(String username, String pwd) {
@@ -59,6 +60,7 @@ public class Facade {
 
 	public void createGame(){
 		stateGame = new StateGame();
+		joinGame();
 	}
 	public boolean joinGame(){ return false; }
 	public boolean loadGame(){ return false; }
@@ -74,7 +76,6 @@ public class Facade {
 		return stateGame.upgradeDungeon(monsterid);
 	}
 
-	public boolean saveDungeon(){return false;} //save modification in the database ?
 	public boolean selectMinion(){return false;}
 	public boolean unSelectMinion(){return false;}
 	public boolean openDialogue(){ return false;}
