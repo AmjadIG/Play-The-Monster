@@ -17,7 +17,6 @@ public class GameController extends Application {
     FacadeClient facade;
     Parent parent = null;
     Scene scene = null;
-    Stage stage = null;
 
     //Sign In Attributes
     @FXML
