@@ -11,10 +11,12 @@ import gui.Board;
 
 public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
+    private int money;
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
     public Monster(Board board, Case position) {
     	super(board, position);
+    	
     	stats.add(1,10); // attack
         stats.add(2,10); // defense
         stats.add(3,10); // speed
@@ -32,6 +34,8 @@ public class Monster extends ActiveUnit implements KeyListener{
     public void setSpell(List<String> spell) {
         this.spell = spell;
     }
+	public int getMoney() { return money; }
+	public void setMoney(int money) { this.money = money; }
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		if(KeyEvent.VK_Q == arg0.getKeyCode()) {

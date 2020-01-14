@@ -1,16 +1,15 @@
 package businesslogic.client;
 
 import businesslogic.client.domain.User;
-import businesslogic.client.domain.unit.Monster;
+
 import comlayer.Serializer;
-import comlayer.server.*;
+
 import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,7 @@ public class Facade {
 	public boolean signup(String username, String pwd) {
 		User u = new User(10, username, pwd);
 		DAO<User> userDAO = DAOFactory.getUserDAO();
+		//TODO login();
 		return userDAO.save(u);
 	}
 	public boolean login(String username, String pwd) {
@@ -50,7 +50,7 @@ public class Facade {
 		List<User> res = userDAO.getBy(attr);
 		if(res.size()!=0) {
 			this.connectedUsers.add(res.get(0));
-			
+
 			return true;
 		}
 		return false;
@@ -63,17 +63,24 @@ public class Facade {
 	public boolean useWeapon(){ return false; }
 	public boolean useSkill(){ return false; }
 
-	public boolean createGame(){ return false; }
+	public void createGame(){
+		stateGame = new StateGame();
+		joinGame();
+	}
 	public boolean joinGame(){ return false; }
 	public boolean loadGame(){ return false; }
 	public boolean saveGame(){ return false; }
 	public boolean quitGame(){ return false; }
 
 	// Rayan
-	public boolean changeDungeonColor(String Color){ return false; }
-	public boolean changeDungeonName(){return false;}
-	public boolean upgradeDungeon(){return false;}
-	public boolean saveDungeon(){return false;} //save modification in the database ?
+	public boolean changeDungeonColor(String color){ return stateGame.changeDungeonColor(color);}
+	public boolean changeDungeonName(String name){
+		return stateGame.changeDungeonName(name);
+	}
+	public boolean upgradeDungeon(String monsterid){
+		return stateGame.upgradeDungeon(monsterid);
+	}
+
 	public boolean selectMinion(){return false;}
 	public boolean unSelectMinion(){return false;}
 	public boolean openDialogue(){ return false;}
