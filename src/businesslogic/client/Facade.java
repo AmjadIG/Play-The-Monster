@@ -30,11 +30,16 @@ public class Facade {
 			return null;
 		}
 	}
+	/**
+	 * Sign-up the user (account creation)
+	 * @param username 
+	 * @param pwd : password
+	 * @return true if the account has been created
+	 */
 	public boolean signup(String username, String pwd) {
-		System.out.println("test");
-		DAO userDAO = DAOFactory.getUserDAO();
 		User u = new User(10, username, pwd);
-		login(u.getName(),u.getPassword());
+		DAO<User> userDAO = DAOFactory.getUserDAO();
+		//TODO login();
 		return userDAO.save(u);
 	}
 	public boolean login(String username, String pwd) {

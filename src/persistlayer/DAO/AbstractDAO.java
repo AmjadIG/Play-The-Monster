@@ -77,6 +77,21 @@ public abstract class AbstractDAO<T> implements DAO<T> {
 		}				
 		return res;
 	}
+	public int getNextAutoIncrement() {
+		int res = 0;
+		query = "SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'PTM' AND TABLE_NAME='"+tableName+"'";
+		System.out.println(query);
+		try {
+			statement = sql.createStatement();
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()) {
+				res = resultSet.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}			
+		return res;
+	}
 	@Override
 	public boolean save(T t) {
 		boolean res = false;
