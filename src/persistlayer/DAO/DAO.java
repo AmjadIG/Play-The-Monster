@@ -24,6 +24,11 @@ public interface DAO<T> {
 	List<T> getAll();
 	
 	/**
+	 * Get the next auto increment of the table
+	 * @return int representing the next auto increment of the table
+	 */
+	int getNextAutoIncrement();
+	/**
 	 * Insert or update an object in the table.
 	 * @param t : the object to save in the table
 	 * @return a boolean value : true if the update count is > 0, false otherwise.

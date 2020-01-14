@@ -8,7 +8,11 @@ import businesslogic.client.domain.User;
 public class Test {
 
 	public static void main(String[] args) {
-		getAllTest();
+		getNextAutoIncrementTest();
+	}
+	public static void getNextAutoIncrementTest() {
+		DAO<User> uDAO = DAOFactory.getUserDAO();
+		System.out.println(uDAO.getNextAutoIncrement());
 	}
 	public static void getTest() {
 		DAO<User> uDAO = DAOFactory.getUserDAO();
@@ -31,7 +35,7 @@ public class Test {
 	}
 	public static void saveTest() {
 		DAO<User> uDAO = DAOFactory.getUserDAO();
-		System.out.println(uDAO.save(new User(6,"christophe", "christophemdp2")));
+		System.out.println(uDAO.save(new User(uDAO.getNextAutoIncrement(),"christophe", "christophemdp2")));
 	}
 	
 	public static void deleteTest() {
