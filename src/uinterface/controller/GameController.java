@@ -106,13 +106,13 @@ public class GameController extends Application {
         }
     }
     public void createGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
-        facade.sendToServer("#@createGame/");
+        facade.sendToServer("#createGame/");
     }
     public void joinGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
-        facade.sendToServer("#@joinGame/");
+        facade.sendToServer("#joinGame/");
     }
     public void loadGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
-        facade.sendToServer("#@loadGame/");
+        facade.sendToServer("#loadGame/");
     }
     //Invoke Facade method when Client ask to save (From MapUI)
     public void saveGame() throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException, IOException {
