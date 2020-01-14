@@ -21,6 +21,7 @@ public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
+    private int money;
     public Monster(Case position) {
     	setPosition(position);
     	stats.add(1,10); // attack
@@ -42,6 +43,11 @@ public class Monster extends ActiveUnit implements KeyListener{
     public void setSpell(List<String> spell) {
         this.spell = spell;
     }
+
+		public int getMoney() { return money; }
+
+		public void setMoney(int money) { this.money = money; }
+		
     public void update() {
 		int realdx = speed*dx;
 		int realdy = speed*dy;
@@ -59,8 +65,8 @@ public class Monster extends ActiveUnit implements KeyListener{
 		g.fillRect(posX, posY, M_WIDTH, M_HEIGHT);
 	}
 	public void logPos() {
-		String msg = String.format("Monster object: x:%s y:%s dx:%s dy:%s", 
-				Integer.toString(posX), 
+		String msg = String.format("Monster object: x:%s y:%s dx:%s dy:%s",
+				Integer.toString(posX),
 				Integer.toString(posY),
 				Integer.toString(dx),
 				Integer.toString(dy));

@@ -44,7 +44,7 @@ public class Facade {
 		List<User> res = userDAO.getBy(attr);
 		if(res.size()!=0) {
 			this.connectedUsers.add(res.get(0));
-			
+
 			return true;
 		}
 		return false;
@@ -68,7 +68,10 @@ public class Facade {
 	// Rayan
 	public boolean changeDungeonColor(String Color){ return false; }
 	public boolean changeDungeonName(){return false;}
-	public boolean upgradeDungeon(){return false;}
+	public boolean upgradeDungeon(){
+		return stateGame.upgradeDungeon(getMonsterById());
+		return false;}
+
 	public boolean saveDungeon(){return false;} //save modification in the database ?
 	public boolean selectMinion(){return false;}
 	public boolean unSelectMinion(){return false;}
