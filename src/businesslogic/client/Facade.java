@@ -1,23 +1,22 @@
 package businesslogic.client;
 
 import businesslogic.client.domain.User;
-import businesslogic.client.domain.unit.Monster;
+
 import comlayer.Serializer;
-import comlayer.server.*;
+
 import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
-	public StateGame stateGame = new StateGame();
+	public StateGame stateGame;
 	public Serializer serializer = new Serializer();
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if(serializer.isGameStateModification(action)) {
@@ -58,7 +57,9 @@ public class Facade {
 	public boolean useWeapon(){ return false; }
 	public boolean useSkill(){ return false; }
 
-	public boolean createGame(){ return false; }
+	public void createGame(){
+		stateGame = new StateGame();
+	}
 	public boolean joinGame(){ return false; }
 	public boolean loadGame(){ return false; }
 	public boolean saveGame(){ return false; }
