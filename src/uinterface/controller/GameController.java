@@ -1,6 +1,9 @@
 package uinterface.controller;
 
 import businesslogic.client.FacadeClient;
+import businesslogic.client.StateGame;
+import businesslogic.client.domain.map.Map;
+import businesslogic.client.domain.unit.Monster;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+import uinterface.views.GameFrame;
+import uinterface.views.GameInterface;
+import java.awt.EventQueue;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
@@ -17,7 +22,7 @@ public class GameController extends Application {
     FacadeClient facade;
     Parent parent = null;
     Scene scene = null;
-
+    GameFrame gameFrame;
     //Sign In Attributes
     @FXML
     TextField name = null;
@@ -35,7 +40,7 @@ public class GameController extends Application {
     TextField email = null;
 
     public GameController() throws IOException {
-    	this.facade = new FacadeClient();
+    	this.facade = new FacadeClient(this);
     	
     }
     //Start called by main
@@ -122,7 +127,24 @@ public class GameController extends Application {
     public void mainMenu() throws IOException{
         changeScene("../views/game/mainMenu.fxml");
     }
+    public void launchGame() {
 
+    	GameInterface gi = GameInterface.createBoard();
+    	Map map = new Map();
+    	Monster monster = new Monster();
+    	StateGame stateGame = new StateGame();
+    	
+    	this.gameFrame = new GameFrame(gi);
+    	gi.setGameState(stateGame);
+    	stateGame.addMonster(monster);
+    	stateGame.setMap(map);
+    	gi.addKeyListener(monster);
+    	facade.setStateGame(stateGame);
+    	
+    	EventQueue.invokeLater(() ->{
+			gameFrame.setVisible(true);
+		});
+    }
     public void changeScene(String fxml) throws IOException {
         Stage newStage = new Stage();
         parent = FXMLLoader.load(getClass().getResource(fxml));

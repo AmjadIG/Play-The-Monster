@@ -1,25 +1,23 @@
 package businesslogic.client.domain.unit;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
-
 import businesslogic.client.domain.map.Case;
-import gui.GameInterface;
+import uinterface.views.GameFrame;
+import uinterface.views.GameInterface;
 
 public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
     private int money;
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
-    public Monster(GameInterface board, Case position) {
-    	super(board, position);
+    public Monster() {
+    	super();
     	
-    	stats.add(1,10); // attack
-        stats.add(2,10); // defense
-        stats.add(3,10); // speed
+//    	stats.add(1,10); // attack
+//        stats.add(2,10); // defense
+//        stats.add(3,10); // speed
     }
 
     public List<Integer> getStats() {

@@ -1,12 +1,12 @@
 package businesslogic.client.domain.unit;
 
 import businesslogic.client.domain.map.Case;
-import gui.GameInterface;
+import uinterface.views.GameInterface;
 
 public class NonPlayerCharacter extends ActiveUnit {
 	private boolean standby;
-	public NonPlayerCharacter(GameInterface board, Case position) {
-		super(board, position);
+	public NonPlayerCharacter() {
+		super();
 	}
     public boolean isStandby() {
         return standby;

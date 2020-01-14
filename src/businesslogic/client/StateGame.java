@@ -1,34 +1,29 @@
 package businesslogic.client;
 
-import businesslogic.client.domain.*;
 import businesslogic.client.domain.map.Map;
 import businesslogic.client.domain.unit.ActiveUnit;
 import businesslogic.client.domain.unit.Monster;
-
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class StateGame {
-    private List<String> rollBack;
-    private List<User> connectedUsers; 
+    private List<String> rollBack; 
     private Map map;
     private List<Monster> monsters;
     private List<ActiveUnit> activeUnits;
 
-
-    public StateGame() {
-    	this.connectedUsers = new ArrayList<>();
+    public StateGame() { 	
     	this.map = new Map();
     	this.monsters = new ArrayList<Monster>();
-    	for(User user : connectedUsers) {
-    		Monster m = user.getMonster();
-    		monsters.add(m);
-    		activeUnits.add(m);
-    	}
+    	this.activeUnits = new ArrayList<ActiveUnit>();
     }
-
+    public void addMonster(Monster m) {
+    	this.activeUnits.add(m);
+    	this.monsters.add(m);
+    	
+    }
     /**
      * add String in the List<String> rollback
      * @param command
@@ -36,7 +31,6 @@ public class StateGame {
     public void update(String command){
         rollBack.add(command);
     }
-
     /**
      * List<String> getter
      * @return List<String>
@@ -44,7 +38,6 @@ public class StateGame {
     public List<String> getRollBack() {
         return rollBack;
     }
-
     /**
      *
      * @param rollBack
@@ -52,28 +45,10 @@ public class StateGame {
     public void setRollBack(List<String> rollBack) {
         this.rollBack = rollBack;
     }
-
-    /**
-     * ConnectedUsers getter
-     * @return List<User>
-     */
-    public List<User> getConnectedUsers() {
-        return connectedUsers;
-    }
-
-    /**
-     * ConnectedUsers setter
-     * @param connectedUsers
-     */
-    public void setConnectedUsers(List<User> connectedUsers) {
-        this.connectedUsers = connectedUsers;
-    }
-
     //TODO
     public void updateBuffer(){ //update the state of ObjectBuffer
 
     }
-
     /**
      * Map getter
      * @return Map
@@ -81,7 +56,6 @@ public class StateGame {
     public Map getMap() {
         return map;
     }
-
     /**
      * Map setter
      * @param map
@@ -89,7 +63,6 @@ public class StateGame {
     public void setMap(Map map) {
         this.map = map;
     }
-
     /**
      * Monsters getter
      * @return Monster
@@ -97,7 +70,13 @@ public class StateGame {
     public List<Monster> getMonsters() {
         return monsters;
     }
-
+    /**
+     * Active units getter
+     * @return
+     */
+    public List<ActiveUnit> getActiveUnit() {
+        return activeUnits;
+    }
     /**
      * Monsters setter
      * @param monsters
@@ -105,7 +84,6 @@ public class StateGame {
     public void setMonsters(List<Monster> monsters) {
         this.monsters = monsters;
     }
-
     /**
      * upgrade the dungeon if the monster has enough money and return if it made the upgrade
      * @param monsterID
@@ -121,7 +99,6 @@ public class StateGame {
             return false;
         }
     }
-
     /**
      * verify if the monster had enough money to upgrade his dungeon
      * @param monster
@@ -130,7 +107,6 @@ public class StateGame {
     public boolean tryUpgradeDungeon(Monster monster){
         return (monster.getMoney() >= getMap().getDungeon().getPriceToUpgrade());
     }
-
     /**
      * change the name of the dungeon if the string in parameter is good
      * @param name
@@ -145,12 +121,10 @@ public class StateGame {
         }
 
     }
-
 	public boolean move(String monsterID, String direction) {
 		Monster m = getMonsterByID(monsterID);
 		return m.move(direction);
 	}
-
     /**
      * return the monster with this monsterID , return null if there is no Monster associate to this monsterID
      * @param monsterID
@@ -159,7 +133,6 @@ public class StateGame {
 	private Monster getMonsterByID(String monsterID) {
 		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
 	}
-
     /**
      * change the dungeon color if the color in param is good
      * @param color
@@ -172,7 +145,6 @@ public class StateGame {
         }else return false;
 
     }
-
     /**
      * return true or false if this color is available
      * @param color
@@ -181,15 +153,10 @@ public class StateGame {
     private boolean isDungeonColorAvailable(String color) {
 	    return true;
     }
-
     /**
      * Update the position of all the Units
      */
 	public void updateUnitsPosition() {
 		
-	}
-
-	public void draw(Graphics g) {
-		activeUnits.stream().forEach(a->a.draw(g));
 	}
 }

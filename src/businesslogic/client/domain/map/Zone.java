@@ -21,8 +21,7 @@ public class Zone {
     public Zone( int x, int y) {
         this.setGridCase(new Case[30][30]);
         for (int i = 0; i < gridCase.length; i++) {
-			for (int j = 0; j < gridCase.length; j++) {
-				
+			for (int j = 0; j < gridCase.length; j++) { 
 				gridCase[i][j] = new Case(i,j);
 			}
 		}

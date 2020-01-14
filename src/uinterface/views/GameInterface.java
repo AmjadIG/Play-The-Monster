@@ -1,15 +1,13 @@
-package gui;
+package uinterface.views;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import businesslogic.client.StateGame;
-import businesslogic.client.domain.unit.Monster;
 
 import java.awt.Toolkit;
+import java.awt.event.KeyListener;
 
 public class GameInterface extends JPanel implements Runnable{
 
@@ -23,10 +21,8 @@ public class GameInterface extends JPanel implements Runnable{
 	private StateGame stateGame;
 	
 	private GameInterface() {
-		stateGame = new StateGame();
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
-		setBackground(Color.BLACK);	
-		stateGame.getMonsters().stream().forEach(m->addKeyListener(m));
+		setBackground(Color.BLACK);
 	}
 	
 	static public GameInterface createBoard() {
@@ -36,13 +32,18 @@ public class GameInterface extends JPanel implements Runnable{
 			return board;
 		}
 	}
-
+	public void setGameState(StateGame stateGame) {
+		this.stateGame = stateGame;
+	}
+	public void addKeyListener(KeyListener k) {
+		super.addKeyListener(k);
+	}
 	private void update() {
 		stateGame.updateUnitsPosition();
 	}
 	
 	private void drawObjects(Graphics g) {
-		stateGame.draw(g);
+		stateGame.getActiveUnit().stream().forEach(a->a.draw(g));
 		//Sync the painting on system that buffer graphics events
 		Toolkit.getDefaultToolkit().sync();
 	}

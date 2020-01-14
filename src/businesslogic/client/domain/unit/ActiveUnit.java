@@ -5,37 +5,36 @@ import java.awt.Graphics;
 
 import businesslogic.client.domain.AbstractUnit;
 import businesslogic.client.domain.map.Case;
-import gui.GameInterface;
+import uinterface.views.GameFrame;
+import uinterface.views.GameInterface;
 
 public abstract class ActiveUnit extends AbstractUnit {
-	public ActiveUnit(GameInterface board, Case position) {
-		super();
-		this.board = board;
-	}
-
-	private GameInterface board;
+	private GameFrame board;
     private int idType;
     private int posX = 0;
 	private int posY = 0;
+	private Case position;
 	private int dx = 0;
 	private int dy = 0;
 	private int speed = 1;
 	private final int M_WIDTH = 10;
 	private final int M_HEIGHT = 10;
     private AbstractRole role;
-    
+	public ActiveUnit() {
+		super();
+	}
+    public void setPosition(Case c) {
+    	this.position = c;
+    }
     public int getIdType() {
         return idType;
     }
-
     public void setIdType(int idType) {
         this.idType = idType;
     }
-
     public AbstractRole getRole() {
         return role;
     }
-
     public void setRole(AbstractRole role) {
         this.role = role;
     }

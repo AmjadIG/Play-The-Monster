@@ -16,16 +16,19 @@ import java.util.List;
 public class FacadeClient {
 	public CommunicationClient chatClient;
 	public GameController gameController;
+	public StateGame stateGame;
 	public Deserializer deserializer = new Deserializer();
 	private int userID;
 
-	public FacadeClient() throws IOException {
+	public FacadeClient(GameController gameController) throws IOException {
 		this.chatClient = new CommunicationClient("localhost", 5555, this);
+		this.gameController = gameController;
 	}
 
 	public void login(String result) {
 		if(Integer.valueOf(result) > 0) {
 			userID = Integer.valueOf(result);
+			gameController.launchGame();
 		}
 	}
 	public void interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
@@ -52,5 +55,8 @@ public class FacadeClient {
 	}
 	public void sendToServer(String action) throws IOException {
 		chatClient.handleMessageFromFacade(action);
+	}
+	public void setStateGame(StateGame sg) {
+		this.stateGame = sg;
 	}
 }
