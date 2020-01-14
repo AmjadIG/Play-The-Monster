@@ -1,6 +1,7 @@
 package businesslogic.client;
 
 import businesslogic.client.domain.User;
+import businesslogic.client.domain.unit.Monster;
 import comlayer.Serializer;
 import comlayer.server.*;
 import persistlayer.DAO.DAO;
@@ -16,12 +17,8 @@ import java.util.Map;
 
 public class Facade {
 	public ArrayList<User> connectedUsers = new ArrayList();
-	public StateGame stateGame = new StateGame());
+	public StateGame stateGame = new StateGame();
 	public Serializer serializer = new Serializer();
-	private String lastStringAction;
-
-	public Facade() {}
-
 	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		if(serializer.isGameStateModification(action)) {
 			serializer.formating(action);
@@ -48,13 +45,14 @@ public class Facade {
 		List<User> res = userDAO.getBy(attr);
 		if(res.size()!=0) {
 			this.connectedUsers.add(res.get(0));
+
 			return true;
 		}
 		return false;
 	}
 
 	// Lucas
-	public boolean move(){ return false; }
+	public boolean move(String monsterID, String direction){ return stateGame.move(monsterID, direction); }
 	public boolean attack(){ return false; }
 	public boolean counterAttack(){ return false; }
 	public boolean useWeapon(){ return false; }

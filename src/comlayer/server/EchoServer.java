@@ -43,18 +43,6 @@ public class EchoServer extends AbstractServer
         
     }
 
-    public StateGame gameUser(String username){
-        for (StateGame game : facade.stateGames){
-            for (User user : game.getConnectedUsers()){
-                if (username.equals(user.getName())){
-                    return game;
-                }
-            }
-        }
-        return null;
-    }
-
-
     //Instance methods ************************************************
 
     /**
@@ -68,18 +56,14 @@ public class EchoServer extends AbstractServer
     	Object o = facade.interpreteAction((String) msg);
         System.out.println(o.toString());
         String command = facade.serializer.extractCommand((String)msg);
-        String username = facade.serializer.extractParams((String) msg)[0];
         if (command.equals("login") ||command.equals("register")){
             client.sendToClient(msg+"="+o);
             if(o.equals(true)) {
-            	client.setInfo("monster",facade.connectedUsers.get(facade.connectedUsers.size()-1).getMonster());
+            	client.setInfo("user",facade.connectedUsers.get(facade.connectedUsers.size()-1));
             }
         }
         else {
-            StateGame game = gameUser(username);
-            for (User u : game.getConnectedUsers()){
-                u.getConnectionToClient().sendToClient(msg);
-            }
+        	sendToAllClients(msg);
         }
     }
 

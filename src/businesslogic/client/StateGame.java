@@ -76,4 +76,13 @@ public class StateGame {
     public boolean tryUpgradeDungeon(Monster monster){
         return (monster.getMoney() >= getMap().getDungeon().getPriceToUpgrade());
     }
+
+	public boolean move(String monsterID, String direction) {
+		Monster m = getMonsterByID(monsterID);
+		return false;
+	}
+	private Monster getMonsterByID(String monsterID) {
+		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
+	}
+
 }
