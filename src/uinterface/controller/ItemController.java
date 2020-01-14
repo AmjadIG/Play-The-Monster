@@ -26,11 +26,7 @@ public class ItemController extends Application {
     @FXML
     private boolean sellSection = false;
     @FXML
-    private ListView<String> listItem = null;
-
-    public ItemController() throws IOException {
-        this.facade = new FacadeClient();
-    }
+    private ListView<String> listItem = new ListView<String>();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -101,30 +97,33 @@ public class ItemController extends Application {
     }
 
     public void craftSection(MouseEvent mouseEvent) throws IOException {
-        listItem.getItems().setAll("Potion","Wooden sword","Iron shield");
+        //listItem.getItems().setAll("Potion","Wooden sword","Iron shield");
         this.craftSection = true;
         Stage newStage = new Stage();
         parent = FXMLLoader.load(getClass().getResource("../views/item/itemSelection.fxml"));
         scene = new Scene(parent, 600, 330);
         newStage.setScene(scene);
+        newStage.show();
     }
 
     public void upgradeSection(MouseEvent mouseEvent) throws IOException {
-        listItem.getItems().setAll("Wooden sword","Iron shield");
+        //listItem.getItems().setAll("Wooden sword","Iron shield");
         this.upgradeSection = true;
         Stage newStage = new Stage();
         parent = FXMLLoader.load(getClass().getResource("../views/item/itemSelection.fxml"));
         scene = new Scene(parent, 600, 330);
         newStage.setScene(scene);
+        newStage.show();
     }
 
     public void buySection(MouseEvent mouseEvent) throws IOException {
-        listItem.getItems().setAll("Potion","Fire sword","Platinum shield");
+        //listItem.getItems().setAll("Potion","Fire sword","Platinum shield");
         this.buySection = true;
         Stage newStage = new Stage();
         parent = FXMLLoader.load(getClass().getResource("../views/item/itemSelection.fxml"));
         scene = new Scene(parent, 600, 330);
         newStage.setScene(scene);
+        newStage.show();
     }
 
     public void sellSection(MouseEvent mouseEvent) throws IOException {
@@ -134,6 +133,7 @@ public class ItemController extends Application {
         parent = FXMLLoader.load(getClass().getResource("../views/item/itemSelection.fxml"));
         scene = new Scene(parent, 600, 330);
         newStage.setScene(scene);
+        newStage.show();
     }
 
     public void goBack(MouseEvent mouseEvent) throws IOException {
@@ -146,6 +146,7 @@ public class ItemController extends Application {
         parent = FXMLLoader.load(getClass().getResource("../views/item/itemMenu.fxml"));
         scene = new Scene(parent, 600, 330);
         newStage.setScene(scene);
+        newStage.show();
     }
 
     public void itemAvailable() throws IOException {

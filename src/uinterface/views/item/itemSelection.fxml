@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uinterface.controller.ItemController">
    <children>
-      <GridPane alignment="CENTER" layoutX="102.0" layoutY="60.0" prefHeight="300.0" prefWidth="408.0">
+      <GridPane alignment="CENTER" layoutX="102.0" layoutY="60.0" prefHeight="300.0" prefWidth="408.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="60.0">
          <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="90.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="40.0" />
@@ -24,11 +24,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="193.0" minHeight="10.0" prefHeight="175.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="56.0" minHeight="9.0" prefHeight="29.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="56.0" minHeight="0.0" prefHeight="28.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="56.0" minHeight="0.0" prefHeight="42.0" valignment="CENTER" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="27.0" prefWidth="61.0" text="Return" textAlignment="CENTER" GridPane.rowIndex="4" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#goBack" prefHeight="27.0" prefWidth="61.0" text="Return" textAlignment="CENTER" GridPane.rowIndex="3" />
             <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="42.0" prefWidth="580.0" text="Blacksmith" textAlignment="CENTER" GridPane.columnIndex="2">
                <font>
                   <Font name="Eurostile T Bold" size="24.0" />
@@ -36,7 +35,7 @@
             </Label>
             <Separator prefHeight="0.0" prefWidth="304.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ListView fx:id="listItem" prefHeight="163.0" prefWidth="259.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Select" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Select" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Separator prefHeight="0.0" prefWidth="304.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Separator prefHeight="0.0" prefWidth="304.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
