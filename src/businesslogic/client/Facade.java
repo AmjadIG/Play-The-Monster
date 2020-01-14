@@ -52,6 +52,47 @@ public class Facade {
 		}
 		return false;
 	}
+
+	// Lucas
+	public boolean move(){ return false; }
+	public boolean attack(){ return false; }
+	public boolean counterAttack(){ return false; }
+	public boolean useWeapon(){ return false; }
+	public boolean useSkill(){ return false; }
+
+	public boolean createGame(){ return false; }
+	public boolean joinGame(){ return false; }
+	public boolean loadGame(){ return false; }
+	public boolean saveGame(){ return false; }
+	public boolean quitGame(){ return false; }
+
+	// Rayan
+	public boolean changeDungeonColor(String Color){ return false; }
+	public boolean changeDungeonName(){return false;}
+	public boolean upgradeDungeon(){return false;}
+	public boolean saveDungeon(){return false;} //save modification in the database ?
+	public boolean selectMinion(){return false;}
+	public boolean unSelectMinion(){return false;}
+	public boolean openDialogue(){ return false;}
+	public boolean quitDialogue(){ return false;}
+
+	// Christophe
+	public boolean craftItem(){ return false;}
+	public boolean upgradeItem(){ return false;}
+	public boolean buyItem(){ return false;}
+	public boolean sellItem(){ return false;}
+	public boolean storeItem(){ return false;}
+	public boolean pickUpItem(){ return false;}
+
+	// Amjad
+	public boolean addCharacter(){return false;}
+	public boolean deleteCharacter(){return false;}
+
+	public boolean seeCharacteristics(){return false;}
+	public boolean editCharacteristics(){return false;}
+
+
+
 	public Object delegateTo(String action, String command, Object[] params) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		Class<?>[] typeParametres = null;
 		if (params != null) {
