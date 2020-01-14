@@ -22,14 +22,11 @@ public class Monster extends ActiveUnit implements KeyListener {
 	private Monster player = null;
 	private List<String> spell = null;
 	private List<Item> items = null;
-	private int money;
+	private int money = 1000;
 	private Minion minion;
 
-	public Monster() { }
-
-	public Monster(Case position) {
-		setPosition(position);
-
+	public Monster(Board board, Case position) {
+		super(board, position);
 	}
 
 	public void unSelectMinion(){
@@ -56,6 +53,7 @@ public class Monster extends ActiveUnit implements KeyListener {
 	}
 
 	public Monster(Board b) {
+		super();
 		board = b;
 	}
 
@@ -100,32 +98,6 @@ public class Monster extends ActiveUnit implements KeyListener {
 				Integer.toString(dx),
 				Integer.toString(dy));
 		System.out.println(msg);
-	}
-
-	private void speedDown() {
-		if (speed > 1) {
-			speed--;
-		}
-	}
-
-	private void speedUp() {
-		speed++;
-	}
-
-	private void moveUp() {
-		dy = -1;
-	}
-
-	private void moveDown() {
-		dy = +1;
-	}
-
-	private void moveRight() {
-		dx = +1;
-	}
-
-	private void moveLeft() {
-		dx = -1;
 	}
 
 	@Override

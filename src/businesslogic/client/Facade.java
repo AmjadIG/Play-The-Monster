@@ -92,7 +92,7 @@ public class Facade {
 
 	public boolean craftItem(String monsterID){ return stateGame.createItem(monsterID);}
 	public boolean upgradeItem(String monsterID, String itemId){ return stateGame.upgradeItem(monsterID,itemId);}
-	public boolean buyItem(String nameItem){ return false;}
+	public boolean buyItem(String monsterID, String nameItem){return stateGame.buyItem(monsterID , nameItem);}
 	public boolean sellItem(){ return false;}
 	public boolean storeItem(){ return false;}
 	public boolean pickUpItem(){ return false;}

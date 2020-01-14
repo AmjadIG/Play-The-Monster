@@ -248,4 +248,17 @@ public class StateGame {
 
     }
 
+    public boolean buyItem(String monsterID, String nameItem) {
+        Monster monster = getMonsterByID(monsterID);
+        if (isNameItemAvailable(nameItem)){
+            createItem(monsterID);
+            return true;
+        }else return false;
+    }
+
+    private boolean isNameItemAvailable(String nameItem) {
+        if (nameItem == "sword"){
+            return true;
+        }else return false;
+    }
 }
