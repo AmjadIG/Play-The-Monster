@@ -1,10 +1,8 @@
-package businesslogic.client;
+package businesslogic.server;
 
-import businesslogic.client.domain.AbstractUnit;
+import businesslogic.client.StateGame;
 import businesslogic.client.domain.User;
-
 import comlayer.Serializer;
-
 import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
 
@@ -15,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Facade {
+public class FacadeServer {
 	public ArrayList<User> connectedUsers = new ArrayList();
 	public StateGame stateGame;
 	public Serializer serializer = new Serializer();

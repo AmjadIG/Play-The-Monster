@@ -2,9 +2,7 @@ package comlayer.server;// This file contains material supporting section 3.7 of
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-import businesslogic.client.Facade;
-import businesslogic.client.StateGame;
-import businesslogic.client.domain.User;
+import businesslogic.server.FacadeServer;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -27,7 +25,7 @@ public class EchoServer extends AbstractServer
      * The default port to listen on.
      */
     final public static int DEFAULT_PORT = 5555;
-    public Facade facade;
+    public FacadeServer facadeServer;
 
     //Constructors ****************************************************
 
@@ -39,7 +37,7 @@ public class EchoServer extends AbstractServer
     public EchoServer(int port)
     {
     	super(port);
-    	this.facade = new Facade();
+    	this.facadeServer = new FacadeServer();
         
     }
 
@@ -53,13 +51,13 @@ public class EchoServer extends AbstractServer
      */
     public void handleMessageFromClient(Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
         System.out.println(msg);
-    	Object o = facade.interpreteAction((String) msg);
+    	Object o = facadeServer.interpreteAction((String) msg);
         System.out.println(o.toString());
-        String command = facade.serializer.extractCommand((String)msg);
+        String command = facadeServer.serializer.extractCommand((String)msg);
         if (command.equals("login") ||command.equals("register")){
             client.sendToClient(msg+"="+o);
             if(o.equals(true)) {
-            	client.setInfo("user",facade.connectedUsers.get(facade.connectedUsers.size()-1));
+            	client.setInfo("user", facadeServer.connectedUsers.get(facadeServer.connectedUsers.size()-1));
             }
         }
         else {
