@@ -1,4 +1,4 @@
-package businesslogic.client.domain.entity;
+package businesslogic.domain.entity;
 
 import java.util.List;
 

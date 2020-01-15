@@ -1,11 +1,9 @@
 package uinterface.views;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import businesslogic.client.StateGame;
 import java.awt.Toolkit;
+import javax.swing.*;
+import java.awt.*;
+
 
 public class GameInterface extends JPanel implements Runnable{
 

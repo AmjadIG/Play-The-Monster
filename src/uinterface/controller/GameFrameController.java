@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import businesslogic.client.FacadeClient;
 import businesslogic.client.StateGame;
-import businesslogic.client.domain.unit.Monster;
+import businesslogic.domain.unit.Monster;
 import uinterface.views.GameFrame;
 import uinterface.views.GameInterface;
 

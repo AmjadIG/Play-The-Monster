@@ -1,6 +1,6 @@
-package businesslogic.client.domain.map;
+package businesslogic.domain.map;
 
-import businesslogic.client.domain.*;
+import businesslogic.domain.*;
 
 public class Case {
     private AbstractUnit occupiedBy;

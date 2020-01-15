@@ -1,4 +1,4 @@
-package businesslogic.client.domain.entity;
+package businesslogic.domain.entity;
 
 public class Obstacle extends Entity {
     private boolean climbOn=false;

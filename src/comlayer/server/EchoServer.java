@@ -2,9 +2,8 @@ package comlayer.server;// This file contains material supporting section 3.7 of
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-import businesslogic.client.domain.unit.Monster;
+import businesslogic.domain.unit.Monster;
 import businesslogic.server.FacadeServer;
-
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

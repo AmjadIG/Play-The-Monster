@@ -1,26 +1,29 @@
-package businesslogic.client.domain.map;
+package businesslogic.domain.map;
 
-import businesslogic.client.domain.AbstractUnit;
-import businesslogic.client.domain.unit.Minion;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.unit.Minion;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Dungeon extends Zone {
-    private String name;
-	private int level;
+    private String name = "dungeonName";
+	private int level = 1;
     private String color;
     private int priceToUpgrade = 1000;
     private ArrayList<Minion> minions;
+    private ArrayList<Item> chest = new ArrayList();
 
-    public Dungeon(int x, int y, int level, String color) {
+	public Dungeon(int x, int y, int level, String color) {
 		super(x, y);
 		this.level = level;
 		this.color = color;
 		this.minions = createMinions();
         setGridCase(placeTheMinions());
 	}
-
+    
+   public void store(Item item) {
+	  chest.add(item);
+   }
     /**
      * create an example with some Minions
      * @return ArrayList<Minion>
@@ -29,6 +32,7 @@ public class Dungeon extends Zone {
         ArrayList<Minion> minions = new ArrayList<>();
 	    Minion m1 = new Minion();
         m1.setPosition(new Case(1,2,m1));
+       
         Minion m2 = new Minion();
         m2.setPosition(new Case(20,20,m2));
         Minion m3 = new Minion();
@@ -38,6 +42,11 @@ public class Dungeon extends Zone {
         minions.add(m3);
         return minions;
     }
+	
+	public void addMinion(Minion minion) {
+		minions.add(minion);
+		placeTheMinions();
+	}
 	
 	/**
 	 * return the gridCase with the minions placed
@@ -50,9 +59,24 @@ public class Dungeon extends Zone {
 		}
     	return modifGridCase;
     }
+    
+    /**
+     * return the minion in the dungeon with this id , else return null
+     * @param unitID
+     * @return
+     */
+    public Minion selectMinionByID(String unitID) {
+        int idUnit = Integer.parseInt(unitID);
+        for ( Minion m : minions ) {
+            if (m.getIdUnit() == idUnit){
+                    return m;
+            }
+        }
+        return null;
+    }
 
 	public void applyUpgrade(){
-        setLevel(level++);
+        setLevel(level = level + 1);
     }
 
 	public int getLevel() {
@@ -83,18 +107,11 @@ public class Dungeon extends Zone {
         this.name = name;
     }
 
-    /**
-     * return the minion in the dungeon with this id , else return null
-     * @param unitID
-     * @return
-     */
-    public Minion selectMinionByID(String unitID) {
-        int idUnit = Integer.parseInt(unitID);
-        for ( Minion m : minions ) {
-            if (m.getIdUnit() == idUnit){
-                    return m;
-            }
-        }
-        return null;
-    }
+    public ArrayList<Item> getChest() {
+		return chest;
+	}
+
+	public void setChest(ArrayList<Item> chest) {
+		this.chest = chest;
+	}
 }

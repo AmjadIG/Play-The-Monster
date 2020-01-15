@@ -7,11 +7,9 @@ import uinterface.controller.LoginController;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Random;
 
-import businesslogic.client.domain.unit.Monster;
-
+import businesslogic.domain.unit.Monster;
 
 public class FacadeClient {
 	public CommunicationClient chatClient;

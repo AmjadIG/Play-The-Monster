@@ -3,7 +3,7 @@ package persistlayer.DAO;
 import java.util.HashMap;
 import java.util.Map;
 
-import businesslogic.client.domain.User;
+import businesslogic.domain.User;
 
 public class Test {
 

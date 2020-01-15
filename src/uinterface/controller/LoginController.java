@@ -2,8 +2,8 @@ package uinterface.controller;
 
 import businesslogic.client.FacadeClient;
 import businesslogic.client.StateGame;
-import businesslogic.client.domain.map.Map;
-import businesslogic.client.domain.unit.Monster;
+import businesslogic.domain.map.Map;
+import businesslogic.domain.unit.Monster;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

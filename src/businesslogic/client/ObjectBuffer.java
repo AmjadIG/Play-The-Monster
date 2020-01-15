@@ -1,11 +1,11 @@
 package businesslogic.client;
 
-import businesslogic.client.domain.User;
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.entity.Obstacle;
-import businesslogic.client.domain.map.Map;
-import businesslogic.client.domain.unit.Monster;
-import businesslogic.client.domain.unit.NonPlayerCharacter;
+import businesslogic.domain.User;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.entity.Obstacle;
+import businesslogic.domain.map.Map;
+import businesslogic.domain.unit.Monster;
+import businesslogic.domain.unit.NonPlayerCharacter;
 
 import java.util.List;
 

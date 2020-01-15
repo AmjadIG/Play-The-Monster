@@ -1,6 +1,6 @@
-package businesslogic.client.domain.entity;
+package businesslogic.domain.entity;
 
-import businesslogic.client.domain.AbstractUnit;
+import businesslogic.domain.AbstractUnit;
 
 public abstract class Entity extends AbstractUnit {
     private int idEntity;

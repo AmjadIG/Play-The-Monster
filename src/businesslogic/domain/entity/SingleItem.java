@@ -1,4 +1,4 @@
-package businesslogic.client.domain.entity;
+package businesslogic.domain.entity;
 
 public class SingleItem extends Item {
     private String effect;

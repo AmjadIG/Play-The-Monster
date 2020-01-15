@@ -1,4 +1,4 @@
-package businesslogic.client.domain.map;
+package businesslogic.domain.map;
 
 public class Zone {
     private Case[][] gridCase;

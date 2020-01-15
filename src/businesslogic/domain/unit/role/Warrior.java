@@ -1,6 +1,6 @@
-package businesslogic.client.domain.unit.role;
+package businesslogic.domain.unit.role;
 
-import businesslogic.client.domain.unit.AbstractRole;
+import businesslogic.domain.unit.AbstractRole;
 
 public class Warrior extends AbstractRole {
     private int power;

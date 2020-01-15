@@ -1,21 +1,18 @@
-package businesslogic.client.domain.unit;
+package businesslogic.domain.unit;
+
 
 import java.awt.Color;
 import java.awt.Graphics;
-
 import javax.swing.JPanel;
-
-import businesslogic.client.domain.AbstractUnit;
-import businesslogic.client.domain.map.Case;
+import businesslogic.domain.AbstractUnit;
 import uinterface.views.GameFrame;
-import uinterface.views.GameInterface;
+import java.awt.*;
 
 public abstract class ActiveUnit extends AbstractUnit {
 	private GameFrame board;
     private int idType;
     private int posX;
 	private int posY;
-	private Case position;
 	private int dx = 0;
 	private int dy = 0;
 	private int speed = 1;
@@ -28,15 +25,12 @@ public abstract class ActiveUnit extends AbstractUnit {
 	public ActiveUnit() {
 		super();
 	}
+
 	public ActiveUnit(int id, int x, int y) {
 		super(id);
 		this.posX = x;
 		this.posY = y;
 	}
-    public void setPosition(Case c) {
-    	this.position = c;
-    }
-    
 
     public int getIdType() {
         return idType;

@@ -1,11 +1,13 @@
 package businesslogic.client;
 
 
-import businesslogic.client.domain.map.Map;
-import businesslogic.client.domain.unit.ActiveUnit;
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.unit.Minion;
-import businesslogic.client.domain.unit.Monster;
+
+import businesslogic.domain.map.Map;
+import businesslogic.domain.unit.ActiveUnit;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.unit.Minion;
+import businesslogic.domain.unit.Monster;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -128,6 +130,12 @@ public class StateGame {
         }
 
     }
+    /**
+     * 
+     * @param monsterID
+     * @param direction
+     * @return
+     */
 	public boolean move(String monsterID, String direction) {
 		Monster m = getMonsterByID(monsterID);
 		return m.move(direction);
@@ -137,8 +145,15 @@ public class StateGame {
      * @param monsterID
      * @return boolean
      */
-	private Monster getMonsterByID(String monsterID) {
-		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()).equals(monsterID)).findFirst().get();
+
+	public Monster getMonsterByID(String monsterID) {
+		for (Monster monster : monsters) {
+			if(monster.getIdUnit() == Integer.parseInt(monsterID)) {
+				return monster;
+			}
+		}
+		return null;
+
 	}
     /**
      * change the dungeon color if the color in param is good
@@ -227,20 +242,113 @@ public class StateGame {
         if (myItem != null){
             monster.upgrade(myItem);
             return true;
-        }
-        return false;
+        }else return false;
 
     }
+
+    /**
+     *
+     * @param monsterID
+     * @param nameItem
+     * @return
+     */
     public boolean buyItem(String monsterID, String nameItem) {
-        Monster monster = getMonsterByID(monsterID);
         if (isNameItemAvailable(nameItem)){
             createItem(monsterID);
+            Monster monster = getMonsterByID(monsterID);
+            monster.addMoney(-50);
             return true;
         }else return false;
     }
+
+    /**
+     *
+     * @param nameItem
+     * @return
+     */
     private boolean isNameItemAvailable(String nameItem) {
         if (nameItem == "sword"){
             return true;
         }else return false;
     }
+
+    /**
+     *
+     * @param monsterID
+     * @param itemID
+     * @return
+     */
+    public boolean sellItem(String monsterID , String itemID) {
+        Monster monster = getMonsterByID(monsterID);
+        Item myItem = monster.getItemById(itemID);
+        if (myItem != null){
+            monster.sellItem(itemID);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * store the item in the inventory
+     * @param monsterID
+     * @param itemID
+     * @return
+     */
+    public boolean storeItem(String monsterID, String itemID) {
+        Monster monster = getMonsterByID(monsterID);
+        Item myItem = monster.getItemById(itemID);
+        if (myItem != null){
+        	getMap().getDungeon().store(myItem);
+        	monster.removeItemByID(itemID);
+            return true;
+        }else return false;
+    }
+
+    /**
+     * show characteristics of the monster
+     * @param monsterID
+     * @return
+     */
+    public boolean seeCharacteristics(String monsterID) {
+        Monster monster = getMonsterByID(monsterID);
+        System.out.println("health : "+monster.getHealth());
+        System.out.println("attack: "+monster.getAttack());
+        System.out.println("defense : "+monster.getDefense());
+        return true;
+    }
+
+    /**
+     * modify one characteristic of a monster
+     * @param monsterID
+     * @param characteristic
+     * @param value
+     * @return
+     */
+    public boolean editCharacteristic(String monsterID, String characteristic, String value) {
+        Monster monster = getMonsterByID(monsterID);
+        if (characteristic == "attack"){
+            monster.setAttack(Integer.parseInt(value));
+            return true;
+        }
+        else if(characteristic == "defense"){
+            monster.setDefense(Integer.parseInt(value));
+            return true;
+        }
+        else if(characteristic == "health") {
+            monster.setHealth(Integer.parseInt(value));
+            return true;
+        }else return false;
+    }
+    
+    /**
+     * 
+     * @param monsterID
+     * @param itemID
+     * @return
+     */
+	public boolean pickUpItem(String monsterID, String itemID) {
+		getMap().getDungeon().getChest().remove(0);
+		createItem(monsterID);
+		return false;
+	}
 }

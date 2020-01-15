@@ -1,6 +1,6 @@
-package businesslogic.client.domain;
+package businesslogic.domain;
 
-import businesslogic.client.domain.unit.Monster;
+import businesslogic.domain.unit.Monster;
 import comlayer.server.*;
 public class User {
     private Monster monster;

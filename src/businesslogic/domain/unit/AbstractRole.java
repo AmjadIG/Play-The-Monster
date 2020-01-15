@@ -1,4 +1,4 @@
-package businesslogic.client.domain.unit;
+package businesslogic.domain.unit;
 
 public abstract class AbstractRole {
     private int idRole;
