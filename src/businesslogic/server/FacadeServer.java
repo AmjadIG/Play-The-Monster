@@ -1,7 +1,10 @@
 package businesslogic.server;
 
-import businesslogic.client.StateGame;
-import businesslogic.client.domain.User;
+import businesslogic.StateGame;
+import businesslogic.domain.*;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.unit.Minion;
+import businesslogic.domain.unit.Monster;
 import comlayer.Deserializer;
 import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
@@ -71,38 +74,133 @@ public class FacadeServer {
 	public boolean quitGame(){ return false; }
 
 	// Rayan
-	public boolean changeDungeonColor(String color){ return stateGame.changeDungeonColor(color);}
-	public boolean changeDungeonName(String name){
-		return stateGame.changeDungeonName(name);
-	}
-	public boolean upgradeDungeon(String monsterid){
-		return stateGame.upgradeDungeon(monsterid);
+	public boolean upgradeDungeon(String monsterID){
+		Monster monster = stateGame.getMonsterByID(monsterID);
+		if (monster.tryUpgradeDungeon()){
+			monster.setMoney( monster.getMoney() - monster.getDungeon().getPriceToUpgrade());
+			monster.getDungeon().applyUpgrade();
+			return true;
+		}
+		return false;
 	}
 
-	public boolean selectMinion(String monsterID, String unitID){ return stateGame.selectMinionByID(monsterID,unitID);}
-	public boolean unSelectMinion(String monsterID){return stateGame.unSelectMinion(monsterID);}
-	public boolean returnDialogue(String unitID){return stateGame.returnDialogue(unitID);}
+	/**
+	 * change the name of the dungeon if the string in parameter is good
+	 * @param monsterID, name
+	 * @return boolean
+	 */
+	public boolean changeDungeonName(String monsterID, String name){
+		if(name.length()>0){
+			stateGame.getMonsterByID(monsterID).getDungeon().setName(name);
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+	/**
+	 * change the dungeon color if the color in param is good
+	 * @param monsterID, color
+	 * @return boolean
+	 */
+	public boolean changeDungeonColor(String monsterID, String color) {
+		Monster monster = stateGame.getMonsterByID(monsterID);
+		if(monster.getDungeon().isDungeonColorAvailable(color)){
+			monster.getDungeon().setColor(color);
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	/**
+	 * put this minion in attribute of this monsterID
+	 * @param unitID
+	 * @return boolean
+	 */
+	public boolean selectMinionByID(String monsterID , String unitID) {
+		Monster monster = stateGame.getMonsterByID(monsterID);
+		Minion minionSelected = monster.getDungeon().selectMinionByID(unitID);
+		if (minionSelected != null){
+			monster.setMinion(minionSelected);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 *
+	 * @param monsterID
+	 * @return boolean
+	 */
+	public boolean unSelectMinion(String monsterID) {
+		stateGame.getMonsterByID(monsterID).unSelectMinion();
+		return true;
+	}
+	/**
+	 * sysout the minion dialogue
+	 * @param monsterID, unitID
+	 * @return
+	 */
+	public boolean returnDialogue(String monsterID, String unitID) {
+		Minion minionSelected = stateGame.getMonsterByID(monsterID).getDungeon().selectMinionByID(unitID);
+		if (minionSelected != null){
+			String sentence = minionSelected.getSentence();
+			System.out.println(sentence);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	/**
+	 * create an item and add it to the monster's list of items
+	 * @param monsterID
+	 * @return
+	 */
+	public boolean createItem(String monsterID) {
+		Item sword = new Item("Sword",5,1);
+		stateGame.getMonsterByID(monsterID).addItem(sword);
+		return true;
+	}
+	/**
+	 * upgrade an item and add it to the monster's list of items
+	 * @param monsterID
+	 * @return
+	 */
+	public boolean upgradeItem(String monsterID, String itemId ) {
+		Monster monster = stateGame.getMonsterByID(monsterID);
+		Item myItem = monster.getItemById(itemId);
+		if (myItem != null){
+			monster.upgrade(myItem);
+			return true;
+		}
+		return false;
+
+	}
+	public boolean buyItem(String monsterID, String nameItem) {
+		if (stateGame.isNameItemAvailable(nameItem)){
+			createItem(monsterID);
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public boolean openDialogue(){ return false;}
 	public boolean quitDialogue(){ return false;}
 
 	// Christophe
 
-	public boolean craftItem(String monsterID){ return stateGame.createItem(monsterID);}
-	public boolean upgradeItem(String monsterID, String itemID){ return stateGame.upgradeItem(monsterID,itemID);}
-	public boolean buyItem(String monsterID, String nameItem){return stateGame.buyItem(monsterID , nameItem);}
-	public boolean sellItem(String monsterID, String itemID){ return stateGame.sellItem(monsterID,itemID);}
-	public boolean storeItem(String monsterID, String itemID){ return stateGame.storeItem(monsterID,itemID);}
-	public boolean pickUpItem(String monsterID, String itemID){ return stateGame.storeItem(monsterID,itemID);}
+	public boolean sellItem(){ return false;}
+	public boolean storeItem(){ return false;}
+	public boolean pickUpItem(){ return false;}
 
 	// Amjad
-	//public boolean addCharacter(){return false;}
-	//public boolean deleteCharacter(){return false;}
+	public boolean addCharacter(){return false;}
+	public boolean deleteCharacter(){return false;}
 
 	public boolean seeCharacteristics(){return false;}
-	public boolean editCharacteristics(int idSkill,int nbPoints){return false;}
-	public boolean selectAbility(String ability){return false;}
-	public boolean lockAbility(String ability){return false;}
-	public boolean castAbility(String ability){return false;}
+	public boolean editCharacteristics(){return false;}
 
 
 

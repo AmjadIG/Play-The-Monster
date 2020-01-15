@@ -1,6 +1,6 @@
 package persistlayer.DAO;
 
-import businesslogic.client.domain.*;
+import businesslogic.domain.*;
 
 public class UserDAO extends AbstractDAO<User> {
 
