@@ -88,18 +88,18 @@ public class FacadeServer {
 	// Christophe
 
 	public boolean craftItem(String monsterID){ return stateGame.createItem(monsterID);}
-	public boolean upgradeItem(String monsterID, String itemId){ return stateGame.upgradeItem(monsterID,itemId);}
+	public boolean upgradeItem(String monsterID, String itemID){ return stateGame.upgradeItem(monsterID,itemID);}
 	public boolean buyItem(String monsterID, String nameItem){return stateGame.buyItem(monsterID , nameItem);}
-	public boolean sellItem(){ return false;}
-	public boolean storeItem(){ return false;}
-	public boolean pickUpItem(){ return false;}
+	public boolean sellItem(String monsterID, String itemID){ return stateGame.sellItem(monsterID,itemID);}
+	public boolean storeItem(String monsterID, String itemID){ return stateGame.storeItem(monsterID,itemID);}
+	public boolean pickUpItem(String monsterID, String itemID){ return stateGame.storeItem(monsterID,itemID);}
 
 	// Amjad
-	public boolean addCharacter(){return false;}
-	public boolean deleteCharacter(){return false;}
+	//public boolean addCharacter(){return false;}
+	//public boolean deleteCharacter(){return false;}
 
-	public boolean seeCharacteristics(){return false;}
-	public boolean editCharacteristics(){return false;}
+	public boolean seeCharacteristics(String monsterID){return stateGame.seeCharacteristics(monsterID);}
+	public boolean editCharacteristic(String monsterID, String characteristic, String value ){return stateGame.editCharacteristics(monsterID,characteristic,value);}
 
 
 

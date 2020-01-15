@@ -12,7 +12,6 @@ import uinterface.views.GameInterface;
 
 public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
-    private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
     private List<Item> items;
     private int money = 1000;
@@ -21,17 +20,18 @@ public class Monster extends ActiveUnit implements KeyListener{
 
     public Monster() {
     	super();
-    	
-//    	stats.add(1,10); // attack
-//        stats.add(2,10); // defense
-//        stats.add(3,10); // speed
+
     }
-    public List<Integer> getStats() {
-        return stats;
-    }
-    public void setStats(List<Integer> stats) {
-        this.stats = stats;
-    }
+
+    public void addMoney(int value){
+    	money = money + value;
+    	if (money + value < 0){
+    		money = 0;
+		}else{
+			money = money + value;
+		}
+	}
+
     public List<String> getSpell() {
         return spell;
     }
@@ -116,5 +116,14 @@ public class Monster extends ActiveUnit implements KeyListener{
 
 	public void setItems(List<Item> items) {
 		this.items = items;
+	}
+
+	public void sellItem(String itemID) {
+		for (int i = 0; i < items.size(); i++) {
+			if(Integer.parseInt(itemID) == items.get(i).getIdItem()){
+				items.remove(i);
+				addMoney(50);
+			}
+		}
 	}
 }
