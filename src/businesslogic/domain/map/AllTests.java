@@ -1,9 +1,9 @@
-package businesslogic.client.domain.map;
+package businesslogic.domain.map;
 
 import businesslogic.client.StateGame;
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.unit.Minion;
-import businesslogic.client.domain.unit.Monster;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.unit.Minion;
+import businesslogic.domain.unit.Monster;
 import businesslogic.server.FacadeServer;
 
 public class AllTests {

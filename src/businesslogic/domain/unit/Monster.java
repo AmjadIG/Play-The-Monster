@@ -1,16 +1,12 @@
-package businesslogic.client.domain.unit;
+package businesslogic.domain.unit;
 
-import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.map.Case;
-import uinterface.views.GameFrame;
-import uinterface.views.GameInterface;
+import businesslogic.domain.entity.Item;
 
 
 public class Monster extends ActiveUnit implements KeyListener{

@@ -1,11 +1,9 @@
-package businesslogic.client.domain.map;
+package businesslogic.domain.map;
 
-import businesslogic.client.domain.AbstractUnit;
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.unit.Minion;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.unit.Minion;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Dungeon extends Zone {
     private String name = "dungeonName";

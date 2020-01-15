@@ -1,4 +1,4 @@
-package businesslogic.client.domain.unit;
+package businesslogic.domain.unit;
 
 import java.util.Random;
 

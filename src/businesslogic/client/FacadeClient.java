@@ -1,18 +1,12 @@
 package businesslogic.client;
 
-import businesslogic.StateGame;
-import businesslogic.domain.User;
 import comlayer.Deserializer;
 import comlayer.client.CommunicationClient;
-import comlayer.server.*;
-import persistlayer.DAO.DAOFactory;
 import uinterface.controller.GameController;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FacadeClient {
 	public CommunicationClient chatClient;

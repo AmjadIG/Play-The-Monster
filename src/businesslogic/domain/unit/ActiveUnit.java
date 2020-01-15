@@ -1,12 +1,9 @@
-package businesslogic.client.domain.unit;
+package businesslogic.domain.unit;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-import businesslogic.client.domain.AbstractUnit;
-import businesslogic.client.domain.map.Case;
+import businesslogic.domain.AbstractUnit;
 import uinterface.views.GameFrame;
-import uinterface.views.GameInterface;
+
+import java.awt.*;
 
 public abstract class ActiveUnit extends AbstractUnit {
 	private GameFrame board;

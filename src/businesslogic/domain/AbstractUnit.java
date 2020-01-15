@@ -1,6 +1,6 @@
-package businesslogic.client.domain;
+package businesslogic.domain;
 
-import businesslogic.client.domain.map.Case;
+import businesslogic.domain.map.Case;
 
 public abstract class AbstractUnit {
     private int idUnit;

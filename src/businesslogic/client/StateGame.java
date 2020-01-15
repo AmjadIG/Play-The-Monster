@@ -1,13 +1,12 @@
 package businesslogic.client;
 
 
-import businesslogic.client.domain.map.Map;
-import businesslogic.client.domain.unit.ActiveUnit;
-import businesslogic.client.domain.*;
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.unit.Minion;
-import businesslogic.client.domain.unit.Monster;
-import java.awt.Graphics;
+import businesslogic.domain.map.Map;
+import businesslogic.domain.unit.ActiveUnit;
+import businesslogic.domain.entity.Item;
+import businesslogic.domain.unit.Minion;
+import businesslogic.domain.unit.Monster;
+
 import java.util.ArrayList;
 import java.util.List;
 
