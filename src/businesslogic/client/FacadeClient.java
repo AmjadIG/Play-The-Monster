@@ -1,6 +1,7 @@
 package businesslogic.client;
 
-import businesslogic.client.domain.User;
+import businesslogic.StateGame;
+import businesslogic.domain.User;
 import comlayer.Deserializer;
 import comlayer.client.CommunicationClient;
 import comlayer.server.*;

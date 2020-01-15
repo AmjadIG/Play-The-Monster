@@ -1,9 +1,9 @@
 package uinterface.controller;
 
 import businesslogic.client.FacadeClient;
-import businesslogic.client.StateGame;
-import businesslogic.client.domain.map.Map;
-import businesslogic.client.domain.unit.Monster;
+import businesslogic.StateGame;
+import businesslogic.domain.map.Map;
+import businesslogic.domain.unit.Monster;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -133,7 +133,6 @@ public class GameController extends Application {
     	Map map = new Map();
     	Monster monster = new Monster();
     	StateGame stateGame = new StateGame();
-    	
     	this.gameFrame = new GameFrame(gi);
     	gi.setGameState(stateGame);
     	stateGame.addMonster(monster);

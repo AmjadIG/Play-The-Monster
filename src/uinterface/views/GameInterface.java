@@ -4,7 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import businesslogic.client.StateGame;
+import businesslogic.StateGame;
 
 import java.awt.Toolkit;
 import java.awt.event.KeyListener;
