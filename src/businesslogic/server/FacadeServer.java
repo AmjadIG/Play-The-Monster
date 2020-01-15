@@ -99,7 +99,7 @@ public class FacadeServer {
 	//public boolean deleteCharacter(){return false;}
 
 	public boolean seeCharacteristics(String monsterID){return stateGame.seeCharacteristics(monsterID);}
-	public boolean editCharacteristic(String monsterID, String characteristic, String value ){return stateGame.editCharacteristics(monsterID,characteristic,value);}
+	public boolean editCharacteristic(String monsterID, String characteristic, String value ){return stateGame.editCharacteristic(monsterID,characteristic,value);}
 
 
 
