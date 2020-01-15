@@ -3,14 +3,12 @@ package businesslogic.client;
 
 import businesslogic.client.domain.map.Map;
 import businesslogic.client.domain.unit.ActiveUnit;
-import businesslogic.client.domain.*;
 import businesslogic.client.domain.entity.Item;
 import businesslogic.client.domain.unit.Minion;
 import businesslogic.client.domain.unit.Monster;
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 
 public class StateGame {
     private List<String> rollBack; 
@@ -19,7 +17,7 @@ public class StateGame {
     private List<ActiveUnit> activeUnits;
 
     public StateGame() { 	
-    	this.map = new Map();
+    	//this.map = new Map();
     	this.monsters = new ArrayList<Monster>();
     	this.activeUnits = new ArrayList<ActiveUnit>();
     }
@@ -27,6 +25,11 @@ public class StateGame {
     	this.activeUnits.add(m);
     	this.monsters.add(m);
     	
+    }
+    public int getAvailableMonsterID() {
+    	Random r = new Random();
+    	int res = r.nextInt();
+    	return res;
     }
     /**
      * add String in the List<String> rollback
@@ -135,7 +138,7 @@ public class StateGame {
      * @return boolean
      */
 	private Monster getMonsterByID(String monsterID) {
-		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
+		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()).equals(monsterID)).findFirst().get();
 	}
     /**
      * change the dungeon color if the color in param is good

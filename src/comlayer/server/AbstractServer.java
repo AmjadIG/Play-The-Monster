@@ -381,7 +381,9 @@ public abstract class AbstractServer implements Runnable
    * @param client the connection with the client.
    */
   synchronized protected void clientDisconnected(
-    ConnectionToClient client) {}
+    ConnectionToClient client) {
+	  System.out.println("deconnected");
+  }
 
   /**
    * Hook method called each time an exception is thrown in a
@@ -393,7 +395,9 @@ public abstract class AbstractServer implements Runnable
    * @param exception the exception thrown.
    */
   synchronized protected void clientException(
-    ConnectionToClient client, Throwable exception) {}
+    ConnectionToClient client, Throwable exception) {
+	 
+  }
 
   /**
    * Hook method called when the server stops accepting

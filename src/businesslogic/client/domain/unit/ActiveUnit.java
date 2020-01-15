@@ -3,6 +3,8 @@ package businesslogic.client.domain.unit;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.JPanel;
+
 import businesslogic.client.domain.AbstractUnit;
 import businesslogic.client.domain.map.Case;
 import uinterface.views.GameFrame;
@@ -11,8 +13,8 @@ import uinterface.views.GameInterface;
 public abstract class ActiveUnit extends AbstractUnit {
 	private GameFrame board;
     private int idType;
-    private int posX = 0;
-	private int posY = 0;
+    private int posX;
+	private int posY;
 	private Case position;
 	private int dx = 0;
 	private int dy = 0;
@@ -25,6 +27,11 @@ public abstract class ActiveUnit extends AbstractUnit {
     private AbstractRole role;
 	public ActiveUnit() {
 		super();
+	}
+	public ActiveUnit(int id, int x, int y) {
+		super(id);
+		this.posX = x;
+		this.posY = y;
 	}
     public void setPosition(Case c) {
     	this.position = c;
@@ -66,7 +73,19 @@ public abstract class ActiveUnit extends AbstractUnit {
 			throw new IllegalArgumentException("Unexpected value: " + direction);
 		}
     }
-    protected void speedDown() {
+    public int getPosX() {
+		return posX;
+	}
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+	public int getPosY() {
+		return posY;
+	}
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+	protected void speedDown() {
 		if(speed>1) {
 			speed--;
 		}
@@ -92,7 +111,7 @@ public abstract class ActiveUnit extends AbstractUnit {
 	protected void setStaticOnY() {
 		dy = 0;
 	}
-	public void update() {
+	public void update(JPanel board) {
 		int realdx = speed*dx;
 		int realdy = speed*dy;
 		if (posX + realdx < 0 || posX + realdx > board.getWidth()) {

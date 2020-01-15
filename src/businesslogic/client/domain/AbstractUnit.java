@@ -7,6 +7,10 @@ public abstract class AbstractUnit {
     private String name;
     private Case position;
 
+    public AbstractUnit() {}
+    public AbstractUnit(int id) {
+    	this.idUnit = id;
+    }
     public int getIdUnit() {
         return idUnit;
     }

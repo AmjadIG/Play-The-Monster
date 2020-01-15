@@ -18,7 +18,7 @@ import java.awt.EventQueue;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-public class GameController extends Application {
+public class LoginController extends Application {
     FacadeClient facade;
     Parent parent = null;
     Scene scene = null;
@@ -39,7 +39,7 @@ public class GameController extends Application {
     @FXML
     TextField email = null;
 
-    public GameController() throws IOException {
+    public LoginController() throws IOException {
     	this.facade = new FacadeClient(this);
     	
     }
@@ -47,7 +47,7 @@ public class GameController extends Application {
     @Override
     public void start(Stage arg0) throws Exception {
         try {
-            parent = FXMLLoader.load(GameController.class.getResource("../views/game/login.fxml"));
+            parent = FXMLLoader.load(LoginController.class.getResource("../views/game/login.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,24 +127,7 @@ public class GameController extends Application {
     public void mainMenu() throws IOException{
         changeScene("../views/game/mainMenu.fxml");
     }
-    public void launchGame() {
 
-    	GameInterface gi = GameInterface.createBoard();
-    	Map map = new Map();
-    	Monster monster = new Monster();
-    	StateGame stateGame = new StateGame();
-    	
-    	this.gameFrame = new GameFrame(gi);
-    	gi.setGameState(stateGame);
-    	stateGame.addMonster(monster);
-    	stateGame.setMap(map);
-    	gi.addKeyListener(monster);
-    	facade.setStateGame(stateGame);
-    	
-    	EventQueue.invokeLater(() ->{
-			gameFrame.setVisible(true);
-		});
-    }
     public void changeScene(String fxml) throws IOException {
         Stage newStage = new Stage();
         parent = FXMLLoader.load(getClass().getResource(fxml));

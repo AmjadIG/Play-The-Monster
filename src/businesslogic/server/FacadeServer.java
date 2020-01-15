@@ -2,12 +2,15 @@ package businesslogic.server;
 
 import businesslogic.client.StateGame;
 import businesslogic.client.domain.User;
+import businesslogic.client.domain.unit.Monster;
 import comlayer.Deserializer;
+import comlayer.server.EchoServer;
 import persistlayer.DAO.DAO;
 import persistlayer.DAO.DAOFactory;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,19 +18,14 @@ import java.util.Map;
 public class FacadeServer {
 	public ArrayList<User> connectedUsers = new ArrayList();
 	public StateGame stateGame;
+	public EchoServer echoServer;
 	public Deserializer serializer = new Deserializer();
-	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		if(serializer.isGameStateModification(action)) {
-			
-			return delegateTo(action, serializer.extractCommand(action),serializer.extractParams(action));
-		}else if(serializer.isDatabaseModification(action)) {
-			
-			return delegateTo(action, serializer.extractCommand(action),serializer.extractParams(action));
-		}else {
-			System.out.println("commande incorrecte");
-			return null;
-		}
+	
+	public FacadeServer(EchoServer es) {
+		this.echoServer = es;
+		createGame();
 	}
+	
 	/**
 	 * Sign-up the user (account creation)
 	 * @param username 
@@ -38,7 +36,6 @@ public class FacadeServer {
 		DAO<User> userDAO = DAOFactory.getUserDAO();
 		User u = new User(userDAO.getNextAutoIncrement(), username, pwd);
 		userDAO.save(u);
-		login(u.getName(),u.getPassword());
 		return login(u.getName(),u.getPassword());
 	}
 
@@ -63,9 +60,10 @@ public class FacadeServer {
 
 	public void createGame(){
 		stateGame = new StateGame();
-		joinGame();
 	}
-	public boolean joinGame(){ return false; }
+	public boolean joingame(String id){
+		return true;
+	}
 	public boolean loadGame(){ return false; }
 	public boolean saveGame(){ return false; }
 	public boolean quitGame(){ return false; }
@@ -97,14 +95,14 @@ public class FacadeServer {
 	// Amjad
 	public boolean addCharacter(){return false;}
 	public boolean deleteCharacter(){return false;}
-
 	public boolean seeCharacteristics(){return false;}
 	public boolean editCharacteristics(){return false;}
-
-
-
+	
+	public Object interpreteAction(String action) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		return delegateTo(action, serializer.extractCommand(action),serializer.extractParams(action));
+	}
 	public Object delegateTo(String action, String command, Object[] params) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
-		Class<?>[] typeParametres = null;
+		Class<?>[] typeParametres = new Class<?>[params.length];
 		if (params != null) {
 			typeParametres = new Class[params.length];
 			for (int i = 0; i < params.length; ++i) {

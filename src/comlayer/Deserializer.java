@@ -21,7 +21,7 @@ public class Deserializer {
 		if(res.length > 1) {
 			return res[1];
 		}
-		return null;
+		return "";
 	}
 	public String extractCommand(String str) {
 		str = formating(str);
@@ -30,11 +30,14 @@ public class Deserializer {
 	}
 
 	public String[] extractParams(String str) {
-		String params = str.substring(str.indexOf("/") + 1);
-		if(params.contains("=")){
-			params = params.substring(0, params.indexOf("=") -1);
+		if(str.contains("/")) {
+			String params = str.substring(str.indexOf("/") + 1);
+			if(params.contains("=")){
+				params = params.substring(0, params.indexOf("=") -1);
+			}
+			return params.split(",");
 		}
-		return params.split(",");
+		return new String[0];
 	}
 
 	// verify if string looks like #b/

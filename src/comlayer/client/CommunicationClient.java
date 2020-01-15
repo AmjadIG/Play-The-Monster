@@ -16,6 +16,7 @@ public class CommunicationClient extends AbstractClient {
 
     public void handleMessageFromServer(Object msg) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
     	facadeClient.interpreteAction((String) msg);
+    	System.out.println(msg);
     }
     public void handleMessageFromFacade(String msg) {
         try{

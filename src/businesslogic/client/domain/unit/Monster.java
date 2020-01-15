@@ -1,17 +1,15 @@
 package businesslogic.client.domain.unit;
 
-import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
-import businesslogic.client.domain.entity.Item;
-import businesslogic.client.domain.map.Case;
-import uinterface.views.GameFrame;
-import uinterface.views.GameInterface;
 
+import businesslogic.client.FacadeClient;
+import businesslogic.client.domain.entity.Item;
 
 public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
+    private FacadeClient facade;
     private List<Integer> stats; //3 stats attack, defense, speed
     private List<String> spell = null;
     private List<Item> items;
@@ -21,13 +19,21 @@ public class Monster extends ActiveUnit implements KeyListener{
 
     public Monster() {
     	super();
-    	
+//    	stats.add(1,10); // attack
+//        stats.add(2,10); // defense
+//        stats.add(3,10); // speed
+    }
+    public Monster(int id, int x, int y) {
+    	super(id, x, y);
 //    	stats.add(1,10); // attack
 //        stats.add(2,10); // defense
 //        stats.add(3,10); // speed
     }
     public List<Integer> getStats() {
         return stats;
+    }
+    public void setFacade(FacadeClient f) {
+    	this.facade = f;
     }
     public void setStats(List<Integer> stats) {
         this.stats = stats;
@@ -63,15 +69,19 @@ public class Monster extends ActiveUnit implements KeyListener{
 	public void keyPressed(KeyEvent arg0) {
 		if (KeyEvent.VK_Q == arg0.getKeyCode()) {
 			moveLeft();
+			facade.move(String.valueOf(this.getIdUnit()), "left");
 		}
 		if (KeyEvent.VK_D == arg0.getKeyCode()) {
 			moveRight();
+			facade.move(String.valueOf(this.getIdUnit()), "right");
 		}
 		if (KeyEvent.VK_S == arg0.getKeyCode()) {
 			moveDown();
+			facade.move(String.valueOf(this.getIdUnit()), "down");
 		}
 		if (KeyEvent.VK_Z == arg0.getKeyCode()) {
 			moveUp();
+			facade.move(String.valueOf(this.getIdUnit()), "up");
 		}
 		if (KeyEvent.VK_N == arg0.getKeyCode()) {
 			speedUp();

@@ -50,8 +50,8 @@ public abstract class AbstractClient implements Runnable {
     public final void sendToServer(Object msg) throws IOException {
         if (clientSocket == null || output == null)
             throw new SocketException("socket does not exist");
-
-        output.writeObject(msg);
+        	output.writeObject(msg);
+        
     }
 
     public final void closeConnection() throws IOException {
@@ -101,8 +101,12 @@ public abstract class AbstractClient implements Runnable {
         }
     }
 
-    protected void connectionClosed(){}
-    protected void connectionException(Exception exception){}
+    protected void connectionClosed(){
+    	System.out.println("deco");
+    }
+    protected void connectionException(Exception exception){
+    	exception.printStackTrace();
+    }
     protected void connectionEstablished(){}
     protected abstract void handleMessageFromServer(Object msg) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException;
 

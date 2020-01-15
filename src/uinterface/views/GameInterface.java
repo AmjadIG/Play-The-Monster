@@ -5,9 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import businesslogic.client.StateGame;
-
 import java.awt.Toolkit;
-import java.awt.event.KeyListener;
 
 public class GameInterface extends JPanel implements Runnable{
 
@@ -23,8 +21,9 @@ public class GameInterface extends JPanel implements Runnable{
 	private GameInterface() {
 		setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
 		setBackground(Color.BLACK);
+		setFocusable(true);
+		requestFocusInWindow();
 	}
-	
 	static public GameInterface createBoard() {
 		if(board == null) {
 			return new GameInterface();
@@ -35,32 +34,25 @@ public class GameInterface extends JPanel implements Runnable{
 	public void setGameState(StateGame stateGame) {
 		this.stateGame = stateGame;
 	}
-	public void addKeyListener(KeyListener k) {
-		super.addKeyListener(k);
-	}
 	private void update() {
-		stateGame.updateUnitsPosition();
+		stateGame.getActiveUnit().stream().forEach(au->au.update(this));
 	}
-	
 	private void drawObjects(Graphics g) {
 		stateGame.getActiveUnit().stream().forEach(a->a.draw(g));
 		//Sync the painting on system that buffer graphics events
 		Toolkit.getDefaultToolkit().sync();
 	}
-	
 	@Override
 	public void addNotify() {
 		super.addNotify();
 		animator = new Thread(this);
 		animator.start();
 	}
-	
 	@Override
 	protected void paintComponent(Graphics arg0) {
 		super.paintComponent(arg0);
 		drawObjects(arg0);
 	}
-	
 	@Override
 	public void run() {
 		long beforeTime, timeDiff, sleep;

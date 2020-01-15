@@ -1,7 +1,5 @@
 package businesslogic.client.domain.map;
 
-import java.util.List;
-
 public class Map {
     //private List<Zone> gridZone;
 	private Zone[][] gridZone;
