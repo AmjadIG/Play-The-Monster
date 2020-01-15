@@ -125,6 +125,12 @@ public class StateGame {
         }
 
     }
+    /**
+     * 
+     * @param monsterID
+     * @param direction
+     * @return
+     */
 	public boolean move(String monsterID, String direction) {
 		Monster m = getMonsterByID(monsterID);
 		return m.move(direction);
@@ -134,8 +140,13 @@ public class StateGame {
      * @param monsterID
      * @return boolean
      */
-	private Monster getMonsterByID(String monsterID) {
-		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
+	public Monster getMonsterByID(String monsterID) {
+		for (Monster monster : monsters) {
+			if(monster.getIdUnit() == Integer.parseInt(monsterID)) {
+				return monster;
+			}
+		}
+		return null;
 	}
     /**
      * change the dungeon color if the color in param is good
@@ -280,7 +291,8 @@ public class StateGame {
         Monster monster = getMonsterByID(monsterID);
         Item myItem = monster.getItemById(itemID);
         if (myItem != null){
-            monster.addItem(myItem);
+        	getMap().getDungeon().store(myItem);
+        	monster.removeItemByID(itemID);
             return true;
         }else return false;
     }
@@ -320,4 +332,16 @@ public class StateGame {
             return true;
         }else return false;
     }
+    
+    /**
+     * 
+     * @param monsterID
+     * @param itemID
+     * @return
+     */
+	public boolean pickUpItem(String monsterID, String itemID) {
+		getMap().getDungeon().getChest().remove(0);
+		createItem(monsterID);
+		return false;
+	}
 }

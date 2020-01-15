@@ -3,7 +3,10 @@ package businesslogic.client.domain.unit;
 import java.awt.Container;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import businesslogic.client.domain.entity.Item;
 import businesslogic.client.domain.map.Case;
 import uinterface.views.GameFrame;
@@ -12,17 +15,21 @@ import uinterface.views.GameInterface;
 
 public class Monster extends ActiveUnit implements KeyListener{
     private Monster player = null;
-    private List<String> spell = null;
-    private List<Item> items;
+    private List<String> spell = new ArrayList<String>();;
+    private List<Item> items = new ArrayList<Item>();
     private int money = 1000;
 	private Minion minion;
 	
 
     public Monster() {
     	super();
-
+    	setIdUnit(new Random().nextInt(10000));
     }
 
+    /**
+     * 
+     * @param value
+     */
     public void addMoney(int value){
     	money = money + value;
     	if (money + value < 0){
@@ -32,20 +39,53 @@ public class Monster extends ActiveUnit implements KeyListener{
 		}
 	}
 
+    /**
+     * 
+     * @return
+     */
     public List<String> getSpell() {
         return spell;
     }
+    
+    /**
+     * 
+     * @param spell
+     */
     public void setSpell(List<String> spell) {
         this.spell = spell;
     }
+    
+    /**
+     * 
+     * @return
+     */
 	public int getMoney() { return money; }
+	
+	/**
+	 * 
+	 * @param money
+	 */
 	public void setMoney(int money) { this.money = money; }
+	
+	/**
+	 * 
+	 */
 	public void unSelectMinion(){
 		this.minion = null;
 	}
+	
+	/**
+	 * 
+	 * @param item
+	 */
 	public void addItem(Item item){
 		items.add(item);
 	}
+	
+	/**
+	 * 
+	 * @param item
+	 */
 	public void upgrade(Item item){
 		for (int i = 0; i < items.size(); i++) {
 			if(item.getIdItem() == items.get(i).getIdItem()){
@@ -54,11 +94,36 @@ public class Monster extends ActiveUnit implements KeyListener{
 			}
 		}
 	}
-	// TODO
-	// TODO
+
+	/**
+	 * 
+	 * 
+	 * @param itemID
+	 * @return
+	 */
 	public Item getItemById(String itemID){
+		for (int i = 0; i < items.size(); i++) {
+			if(Integer.parseInt(itemID) == items.get(i).getIdItem()){
+				return items.get(i);
+			}
+		}
 		return null;
 	}
+	
+	/**
+	 * 
+	 * @param itemID
+	 */
+	public void removeItemByID(String itemID) {
+		for (int i = 0; i < items.size(); i++) {
+			if(Integer.parseInt(itemID) == items.get(i).getIdItem()){
+				items.remove(i);
+			}
+		}
+	}
+	/**
+	 * 
+	 */
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		if (KeyEvent.VK_Q == arg0.getKeyCode()) {
@@ -81,6 +146,9 @@ public class Monster extends ActiveUnit implements KeyListener{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		int keycode = arg0.getKeyCode();
@@ -98,32 +166,51 @@ public class Monster extends ActiveUnit implements KeyListener{
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Minion getMinion() {
 		return minion;
 	}
 
+	/**
+	 * 
+	 * @param minion
+	 */
 	public void setMinion(Minion minion) {
 		this.minion = minion;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Item> getItems() {
 		return items;
 	}
 
+	/**
+	 * 
+	 * @param items
+	 */
 	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 
+	/**
+	 * 
+	 * @param itemID
+	 */
 	public void sellItem(String itemID) {
-		for (int i = 0; i < items.size(); i++) {
-			if(Integer.parseInt(itemID) == items.get(i).getIdItem()){
-				items.remove(i);
-				addMoney(50);
-			}
-		}
+		removeItemByID(itemID);
+		addMoney(50);
 	}
 }

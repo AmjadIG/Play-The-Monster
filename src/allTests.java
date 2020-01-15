@@ -1,35 +1,41 @@
+import businesslogic.client.FacadeClient;
+import businesslogic.server.FacadeServer;
+
 public class allTests {
     public static void main(){
-        System.out.println("Test for the login method");
-
-        System.out.println("Test for the register method");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
-
-        System.out.println("Test for the  ... method ");
+    	FacadeServer f = new FacadeServer();
+    	
+    	
+//        System.out.println("Test for the login method");
+//
+//        System.out.println("Test for the register method");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
+//
+//        System.out.println("Test for the  ... method ");
     }
 }

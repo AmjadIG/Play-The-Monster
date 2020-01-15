@@ -13,7 +13,6 @@ public abstract class ActiveUnit extends AbstractUnit {
     private int idType;
     private int posX = 0;
 	private int posY = 0;
-	private Case position;
 	private int dx = 0;
 	private int dy = 0;
 	private int speed = 1;
@@ -26,10 +25,6 @@ public abstract class ActiveUnit extends AbstractUnit {
 	public ActiveUnit() {
 		super();
 	}
-    public void setPosition(Case c) {
-    	this.position = c;
-    }
-    
 
     public int getIdType() {
         return idType;
