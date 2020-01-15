@@ -1,7 +1,11 @@
 package businesslogic.client;
 
+
 import businesslogic.client.domain.map.Map;
 import businesslogic.client.domain.unit.ActiveUnit;
+import businesslogic.client.domain.*;
+import businesslogic.client.domain.entity.Item;
+import businesslogic.client.domain.unit.Minion;
 import businesslogic.client.domain.unit.Monster;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -87,7 +91,7 @@ public class StateGame {
     /**
      * upgrade the dungeon if the monster has enough money and return if it made the upgrade
      * @param monsterID
-     * @return
+     * @return boolean
      */
     public boolean upgradeDungeon(String monsterID) {
         Monster monster = getMonsterByID(monsterID);
@@ -128,7 +132,7 @@ public class StateGame {
     /**
      * return the monster with this monsterID , return null if there is no Monster associate to this monsterID
      * @param monsterID
-     * @return
+     * @return boolean
      */
 	private Monster getMonsterByID(String monsterID) {
 		return monsters.stream().filter(m-> String.valueOf(m.getIdUnit()) == monsterID).findFirst().get();
@@ -136,19 +140,18 @@ public class StateGame {
     /**
      * change the dungeon color if the color in param is good
      * @param color
-     * @return
+     * @return boolean
      */
     public boolean changeDungeonColor(String color) {
 	    if(isDungeonColorAvailable(color)){
 	        getMap().getDungeon().setColor(color);
 	        return true;
         }else return false;
-
     }
     /**
      * return true or false if this color is available
      * @param color
-     * @return
+     * @return boolean
      */
     private boolean isDungeonColorAvailable(String color) {
 	    return true;
@@ -159,4 +162,82 @@ public class StateGame {
 	public void updateUnitsPosition() {
 		
 	}
+    /**
+     * put this minion in attribute of this monsterID
+     * @param unitID
+     * @return boolean
+     */
+    public boolean selectMinionByID(String monsterID , String unitID) {
+        Monster monster = getMonsterByID(monsterID);
+        Minion minionSelected = getMap().getDungeon().selectMinionByID(unitID);
+        if (minionSelected != null){
+            monster.setMinion(minionSelected);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     *
+     * @param monsterID
+     * @return boolean
+     */
+    public boolean unSelectMinion(String monsterID) {
+        Monster monster = getMonsterByID(monsterID);
+        monster.unSelectMinion();
+        return true;
+    }
+    /**
+     * sysout the minion dialogue
+     * @param unitID
+     * @return
+     */
+    public boolean returnDialogue(String unitID) {
+        Minion minionSelected = getMap().getDungeon().selectMinionByID(unitID);
+        if (minionSelected != null){
+            String sentence = minionSelected.getSentence();
+            System.out.println(sentence);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * create an item and add it to the monster's list of items
+     * @param monsterID
+     * @return
+     */
+    public boolean createItem(String monsterID) {
+        Item sword = new Item("Sword",5,1);
+        Monster monster = getMonsterByID(monsterID);
+        monster.addItem(sword);
+        return true;
+    }
+    /**
+     * upgrade an item and add it to the monster's list of items
+     * @param monsterID
+     * @return
+     */
+    public boolean upgradeItem(String monsterID, String itemId ) {
+        Monster monster = getMonsterByID(monsterID);
+        Item myItem = monster.getItemById(itemId);
+        if (myItem != null){
+            monster.upgrade(myItem);
+            return true;
+        }
+        return false;
+
+    }
+    public boolean buyItem(String monsterID, String nameItem) {
+        Monster monster = getMonsterByID(monsterID);
+        if (isNameItemAvailable(nameItem)){
+            createItem(monsterID);
+            return true;
+        }else return false;
+    }
+    private boolean isNameItemAvailable(String nameItem) {
+        if (nameItem == "sword"){
+            return true;
+        }else return false;
+    }
 }

@@ -19,6 +19,9 @@ public abstract class ActiveUnit extends AbstractUnit {
 	private int speed = 1;
 	private final int M_WIDTH = 10;
 	private final int M_HEIGHT = 10;
+	private int attack;
+    private int defense;
+    private int health;
     private AbstractRole role;
 	public ActiveUnit() {
 		super();
@@ -26,6 +29,8 @@ public abstract class ActiveUnit extends AbstractUnit {
     public void setPosition(Case c) {
     	this.position = c;
     }
+    
+
     public int getIdType() {
         return idType;
     }
@@ -38,6 +43,19 @@ public abstract class ActiveUnit extends AbstractUnit {
     public void setRole(AbstractRole role) {
         this.role = role;
     }
+
+    public int getAttack() { return attack; }
+
+    public void setAttack(int attack) { this.attack = attack; }
+
+    public int getDefense() { return defense; }
+
+    public void setDefense(int defense) { this.defense = defense; }
+
+    public int getHealth() { return health; }
+
+    public void setHealth(int health) { this.health = health; }
+
     public boolean move(String direction) {
     	switch (direction) {
 		case "up": moveUp();
@@ -98,5 +116,5 @@ public abstract class ActiveUnit extends AbstractUnit {
 				Integer.toString(dy));
 		System.out.println(msg);
 	}
-	
+
 }

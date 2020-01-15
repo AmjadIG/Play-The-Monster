@@ -2,35 +2,18 @@ package comlayer.server;// This file contains material supporting section 3.7 of
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-import businesslogic.client.Facade;
-import businesslogic.client.StateGame;
-import businesslogic.client.domain.User;
+import businesslogic.server.FacadeServer;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-/**
- * This class overrides some of the methods in the abstract
- * superclass in order to give more functionality to the server.
- *
- * @author Dr Timothy C. Lethbridge
- * @author Dr Robert Lagani&egrave;re
- * @author Fran&ccedil;ois B&eacute;langer
- * @author Paul Holden
- * @version July 2000
- */
 public class EchoServer extends AbstractServer
 {
-    //Class variables *************************************************
-
     /**
      * The default port to listen on.
      */
     final public static int DEFAULT_PORT = 5555;
-    public Facade facade;
-
-    //Constructors ****************************************************
-
+    public FacadeServer facadeServer;
     /**
      * Constructs an instance of the echo server.
      *
@@ -39,12 +22,8 @@ public class EchoServer extends AbstractServer
     public EchoServer(int port)
     {
     	super(port);
-    	this.facade = new Facade();
-        
+    	this.facadeServer = new FacadeServer();
     }
-
-    //Instance methods ************************************************
-
     /**
      * This method handles any messages received from the client.
      *
@@ -52,37 +31,17 @@ public class EchoServer extends AbstractServer
      * @param client The connection from which the message originated.
      */
     public void handleMessageFromClient(Object msg, ConnectionToClient client) throws ClassNotFoundException, InvocationTargetException, InstantiationException, NoSuchMethodException, IllegalAccessException, IOException {
-    	Object o = facade.interpreteAction((String)msg);
-        String command = facade.serializer.extractCommand((String)msg);
+    	Object o = facadeServer.interpreteAction((String)msg);
+        String command = facadeServer.serializer.extractCommand((String)msg);
         if (command.equals("login") ||command.equals("register")){
             client.sendToClient(o);
             if(o.equals(true)) {
-            	client.setInfo("user",facade.connectedUsers.get(facade.connectedUsers.size()-1));
+            	client.setInfo("user", facadeServer.connectedUsers.get(facadeServer.connectedUsers.size()-1));
             }
         }
         else {
         	sendToAllClients(msg);
         }
     }
-
-    //Class methods ***************************************************
-
-  /*
-  public static void main(String[] args)
-  {
-    int port = DEFAULT_PORT; //Port to listen on
-
-    EchoServer sv = new EchoServer(port);
-
-    try
-    {
-      sv.listen(); //Start listening for connections
-    }
-    catch (Exception ex)
-    {
-      System.out.println("ERROR - Could not listen for clients!");
-    }
-  }
-  */
 }
-//End of EchoServer class
+

@@ -8,6 +8,7 @@ public class NonPlayerCharacter extends ActiveUnit {
 	public NonPlayerCharacter() {
 		super();
 	}
+
     public boolean isStandby() {
         return standby;
     }

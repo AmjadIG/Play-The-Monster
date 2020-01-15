@@ -12,6 +12,11 @@ public class Case {
      this.y = y;
 	}
     
+    public Case(int x, int y , AbstractUnit occupiedBy) {
+        this.x = x;
+        this.y = y;
+        this.occupiedBy = occupiedBy;
+   	}
     @Override
 	public String toString() {
 		return "Case [occupiedBy=" + occupiedBy + ", x=" + x + ", y=" + y + "]";

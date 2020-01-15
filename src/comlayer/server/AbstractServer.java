@@ -4,7 +4,7 @@
 
 package comlayer.server;
 
-import businesslogic.client.Facade;
+import businesslogic.server.FacadeServer;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -82,7 +82,7 @@ public abstract class AbstractServer implements Runnable
    */
   private boolean readyToStop = false;
 
-  public Facade facade;
+  public FacadeServer facadeServer;
 
 
 // CONSTRUCTOR ******************************************************

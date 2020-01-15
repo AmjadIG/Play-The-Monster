@@ -1,8 +1,5 @@
 package businesslogic.client.domain.map;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Zone {
     private Case[][] gridCase;
     private int x;
@@ -17,7 +14,6 @@ public class Zone {
 		}
 		return null;
 	}
-
     public Zone( int x, int y) {
         this.setGridCase(new Case[30][30]);
         for (int i = 0; i < gridCase.length; i++) {
@@ -28,11 +24,9 @@ public class Zone {
         this.setX(x);
         this.setY(y);
     }
-
     public Case getCase(int x,int y){
         return gridCase[x][y];
     }
-
 	public Case[][] getGridCase() {
 		return gridCase;
 	}
