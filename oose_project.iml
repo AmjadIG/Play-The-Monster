@@ -11,5 +11,6 @@
     <orderEntry type="library" name="mysql-8" level="project" />
     <orderEntry type="library" name="JavaFX13" level="project" />
     <orderEntry type="library" exported="" name="javafx13" level="project" />
+    <orderEntry type="library" name="javafx-sdk-13.01" level="project" />
   </component>
 </module>

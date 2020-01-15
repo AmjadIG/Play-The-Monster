@@ -1,17 +1,12 @@
 package businesslogic.client.domain.map;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import businesslogic.client.StateGame;
-import businesslogic.client.domain.User;
 import businesslogic.client.domain.entity.Item;
 import businesslogic.client.domain.unit.Minion;
 import businesslogic.client.domain.unit.Monster;
 import businesslogic.server.FacadeServer;
 
-public class testZone {
+public class AllTests {
 
 	public static void main(String[] args) {
 
