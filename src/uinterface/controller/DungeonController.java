@@ -52,6 +52,7 @@ public class DungeonController extends Application {
         newStage.setScene(scene);
         dungeonName = (TextField) scene.lookup("#dungeonName");
         newStage.show();
+        facade.sendToServer("#@changeDungeonName/"+dungeonName.getText());
     }
 
     public void setColorDungeon(MouseEvent mouseEvent) throws IOException {
@@ -61,6 +62,7 @@ public class DungeonController extends Application {
         newStage.setScene(scene);
         dungeonColor = (ColorPicker) scene.lookup("#dungeonColor");
         newStage.show();
+        facade.sendToServer("#@changeDungeonColor/"+dungeonColor.toString());
     }
 
     public void upgradeDungeon(MouseEvent mouseEvent) throws IOException {

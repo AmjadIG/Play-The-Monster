@@ -98,8 +98,11 @@ public class FacadeServer {
 	//public boolean addCharacter(){return false;}
 	//public boolean deleteCharacter(){return false;}
 
-	public boolean seeCharacteristics(String monsterID){return stateGame.seeCharacteristics(monsterID);}
-	public boolean editCharacteristic(String monsterID, String characteristic, String value ){return stateGame.editCharacteristic(monsterID,characteristic,value);}
+	public boolean seeCharacteristics(){return false;}
+	public boolean editCharacteristics(int idSkill,int nbPoints){return false;}
+	public boolean selectAbility(String ability){return false;}
+	public boolean lockAbility(String ability){return false;}
+	public boolean castAbility(String ability){return false;}
 
 
 
